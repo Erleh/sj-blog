@@ -1,0 +1,15 @@
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    padding: 1rem;
+}
+
+li a {
+    text-decoration: none;
+    padding: 1rem;
+    margin: -1rem;
+}
