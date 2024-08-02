@@ -11,10 +11,16 @@ export class GetTestsService {
   constructor(private http : HttpClient) { }
 
   getHello() {
-    return this.http.get(`${this.apiUrl}/get_hello`);
+    return this.http.get(
+      `${this.apiUrl}/get_hello`,
+      { responseType: 'text' }
+    );
   }
 
   getCsrf() {
-    return this.http.get(`${this.apiUrl}/get_csrf`);
+    return this.http.get(
+      `${this.apiUrl}/get_csrf`,
+      { responseType: 'text' }
+    );
   }
 }
