@@ -24,6 +24,6 @@ export class AuthserversComponent {
   //  Following OIDC Code Flow PKCE using refresh tokens
   //
   handleAuthWithGoogle() {
-
+    this.googleAuth.login();
   }
 }

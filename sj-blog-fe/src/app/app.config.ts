@@ -3,8 +3,6 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { authConfig } from './auth/auth.config';
-import { provideAuth } from 'angular-auth-oidc-client';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,8 +10,6 @@ export const appConfig: ApplicationConfig = {
     // Routes
     provideRouter(routes),
     // HttpClient
-    provideHttpClient(),
-    // oidc Auth provider 
-    provideAuth(authConfig)
+    provideHttpClient()
   ]
 };

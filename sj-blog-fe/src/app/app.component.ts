@@ -11,6 +11,6 @@ import { TestbarComponent } from "./testbar/testbar.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent{
   title = 'sj-blog-fe';
 }
