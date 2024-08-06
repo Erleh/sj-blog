@@ -1,3 +1,4 @@
 <div>
     <app-google-auth (authWithGoogle)="handleAuthWithGoogle()"></app-google-auth>
+    <router-outlet (activate)="handleRedirect($event)"></router-outlet>
 </div>

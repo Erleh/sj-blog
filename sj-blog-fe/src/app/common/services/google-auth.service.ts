@@ -18,6 +18,4 @@ export class GoogleAuthService {
   logout() {
     // logoff here, remove authorities
   }
-
-  
 }
