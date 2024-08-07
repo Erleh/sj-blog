@@ -23,33 +23,14 @@ export class AuthserversComponent implements OnInit{
     this.googleAuth.login();
   }
 
+  // Redirection occurs when accessing the authorization server page for user permissions
+  // the page is then redirected, when following 'code' flow
   handleRedirect(event: any) {
-    // If redirect from google is hit
+    // If redirect from Google OAuth2 code flow is hit, continue exchange for tokens
     if (event.constructor.name === "_GoogleAuthRedirectComponent") {
       // Continue with google code flow using backend for exchange
-      this.googleAuthCodeRedirect();
-    }
-  }
-
-  googleAuthCodeRedirect() {
-    let findAuthCode = false;
-  
-    // state param is returned by google oauth2 code flow after consenting permissions
-    let state = this.activatedRoute.snapshot.queryParamMap.get("state");
-  
-    // if state exists, perform the rest of google oauth2 code flow
-    if (state !== null) {
-      if (state === localStorage.getItem("state")) {
-        findAuthCode = true;
-      }  
-    }
-  
-    // extract auth code from route params and send it to the backend for exchanging
-    if (findAuthCode) {
-      let authCode = this.activatedRoute.snapshot.queryParamMap.get("code");
-
-      // send authCode for exchange
-      console.log(authCode);
+      let authCode = this.googleAuth.retrieveGoogleAuthorizationCode();
+      this.googleAuth.requestGoogleTokens(authCode);
     }
   }
 }
