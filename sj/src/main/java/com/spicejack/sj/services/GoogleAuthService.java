@@ -26,13 +26,11 @@ public class GoogleAuthService {
         // Possible error of this request is "invalid_grant" where the supplied
         // authorization code is invalid or in the wrong format
         return googleAuthApisProxy.getTokens(
-                authCode,
                 this.client_id,
                 this.client_secret,
-                this.redirect_uri,
-                "email",
-                true,
-                "authorization_code"
+                authCode,
+                "authorization_code",
+                this.redirect_uri
         );
     }
 }

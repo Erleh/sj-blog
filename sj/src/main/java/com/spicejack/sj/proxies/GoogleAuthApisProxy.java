@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface GoogleAuthApisProxy{
     @RequestMapping(method = RequestMethod.POST, value = "/token")
     GoogleTokenExchangeDto getTokens(
-            @RequestParam String code,
             @RequestParam String client_id,
             @RequestParam String client_secret,
-            @RequestParam String redirect_uri,
-            @RequestParam String scope,
-            @RequestParam Boolean include_granted_scopes,
-            @RequestParam String grant_type
+            @RequestParam String code,
+            @RequestParam String grant_type,
+            @RequestParam String redirect_uri
     );
 }

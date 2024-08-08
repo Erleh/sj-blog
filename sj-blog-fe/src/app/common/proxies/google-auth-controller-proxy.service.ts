@@ -14,9 +14,7 @@ export class GoogleAuthControllerProxyService {
   exchangeAuthCodeForTokens(authCode: String) {
     return this.httpClient.post(
       environment.apiUrl + "/google_token_exchange",
-      {
-        authCode
-      }
+      authCode
     );
   }
 }

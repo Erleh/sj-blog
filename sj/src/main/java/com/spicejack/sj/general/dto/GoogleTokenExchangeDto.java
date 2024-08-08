@@ -6,12 +6,12 @@ public class GoogleTokenExchangeDto {
     String access_token;
     int expires_in;
     String refresh_token;
-    String[] scope;
+    String scope;
     String token_type;
 
     public GoogleTokenExchangeDto() {}
 
-    public void setScope(String[] scope) {
+    public void setScope(String scope) {
         this.scope = scope;
     }
 
@@ -47,7 +47,7 @@ public class GoogleTokenExchangeDto {
         return expires_in;
     }
 
-    public String[] getScope() {
+    public String getScope() {
         return scope;
     }
 
@@ -57,7 +57,7 @@ public class GoogleTokenExchangeDto {
                 "access_token='" + access_token + '\'' +
                 ", expires_in=" + expires_in +
                 ", refresh_token='" + refresh_token + '\'' +
-                ", scope=" + Arrays.toString(scope) +
+                ", scope=" + scope +
                 ", token_type='" + token_type + '\'' +
                 '}';
     }

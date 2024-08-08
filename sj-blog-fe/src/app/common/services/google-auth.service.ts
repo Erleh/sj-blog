@@ -34,12 +34,13 @@ export class GoogleAuthService {
     
     // extract auth code from route params and send it to the backend for exchanging
     if (findAuthCode) {
-      let authCode = this.activatedRoute.snapshot.queryParamMap.get("code");
+      let uriAuthCode = this.activatedRoute.snapshot.queryParamMap.get("code");
       
       // Check if authCode exists
-      if (authCode !== null) {
+      if (uriAuthCode !== null) {
+        console.log(decodeURIComponent(uriAuthCode));
         // send authCode for exchange
-        return authCode;
+        return decodeURIComponent(uriAuthCode);
       }
     }
     
