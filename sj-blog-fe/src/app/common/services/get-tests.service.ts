@@ -13,14 +13,18 @@ export class GetTestsService {
   getHello() {
     return this.http.get(
       `${this.apiUrl}/get_hello`,
-      { responseType: 'text' }
+      { 
+        responseType: 'text' 
+      }
     );
   }
 
   getCsrf() {
     return this.http.get(
       `${this.apiUrl}/get_csrf`,
-      { responseType: 'text' }
+      { 
+        responseType: 'text' 
+      }
     );
   }
 }

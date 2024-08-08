@@ -32,13 +32,10 @@ public class SecurityChainConfig {
         });
 
         // CSRF Security configuration
-//        http.csrf(csrf -> {
-//            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-//            csrf.csrfTokenRequestHandler(new SpaCsrfTokenRequestHandler());
-//        }).addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class);
         http.csrf(csrf -> {
-            csrf.disable();
-        });
+            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+            csrf.csrfTokenRequestHandler(new SpaCsrfTokenRequestHandler());
+        }).addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class);
 
         // CORS configuration
         http.cors(cors -> {

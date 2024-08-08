@@ -1,6 +1,7 @@
 package com.spicejack.sj.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,8 @@ public class TestController {
 
     @GetMapping("/get_csrf")
     String testGetCsrf(
-            HttpServletRequest request
+            HttpServletRequest request,
+            HttpServletResponse response
     ) {
         CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 
