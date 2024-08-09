@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { getGoogleAuthCodeQueryString } from '../../configurations/google-auth.config';
 import { GoogleAuthControllerProxyService } from '../proxies/google-auth-controller-proxy.service';
-import { GoogleTokenExchangeDto } from '../dtos/GoogleTokenExchangeDto';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable({

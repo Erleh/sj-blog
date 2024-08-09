@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GoogleAuthComponent } from "./google-auth/google-auth.component";
 import { GoogleAuthService } from '../common/services/google-auth.service';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { CsrfService } from '../common/services/csrf.service';
 
 @Component({
   selector: 'app-authservers',
@@ -12,7 +13,8 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
 })
 export class AuthserversComponent implements OnInit{
   constructor(
-    private googleAuth : GoogleAuthService,
+    private googleAuth: GoogleAuthService,
+    private csrf: CsrfService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -28,9 +30,12 @@ export class AuthserversComponent implements OnInit{
   handleRedirect(event: any) {
     // If redirect from Google OAuth2 code flow is hit, continue exchange for tokens
     if (event.constructor.name === "_GoogleAuthRedirectComponent") {
-      // Continue with google code flow using backend for exchange
-      let authCode = this.googleAuth.retrieveGoogleAuthorizationCode();
-      this.googleAuth.requestGoogleTokens(authCode);
+      // Ensure that client has active csrf token
+      this.csrf.getCsrf().subscribe(res => {
+        // Continue with google code flow using backend for exchange
+        let authCode = this.googleAuth.retrieveGoogleAuthorizationCode();
+        this.googleAuth.requestGoogleTokens(authCode);
+      });
     }
   }
 }
