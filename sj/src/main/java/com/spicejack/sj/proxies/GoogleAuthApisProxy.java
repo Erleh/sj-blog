@@ -1,6 +1,7 @@
 package com.spicejack.sj.proxies;
 
 import com.spicejack.sj.general.dto.GoogleTokenExchangeDto;
+import com.spicejack.sj.general.dto.GoogleTokenInfoDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,5 +16,10 @@ public interface GoogleAuthApisProxy{
             @RequestParam String code,
             @RequestParam String grant_type,
             @RequestParam String redirect_uri
+    );
+
+    @RequestMapping(method = RequestMethod.POST, value = "/tokeninfo")
+    GoogleTokenInfoDto getTokenInfo(
+            @RequestParam String access_token
     );
 }

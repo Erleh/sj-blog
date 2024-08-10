@@ -22,13 +22,20 @@ public class SecurityChainConfig {
     public SecurityFilterChain securityFilterChain (
             HttpSecurity http
     ) throws Exception{
-        // Sets allowed HttpRequest paths
-        //
-        // Currently permitting all requests for initial setup tests
-        //
+        // Authorized paths
         http.authorizeHttpRequests(authorize -> {
             authorize
-                    .anyRequest().permitAll();
+                    .requestMatchers("/public/**", "/error", "/webjars/**").permitAll()
+                    .anyRequest().authenticated();
+        });
+
+        // Handle oauth2
+        http.oauth2ResourceServer(oauth2 -> {oauth2
+            .opaqueToken(opaqueToken -> {
+                opaqueToken
+                    .introspectionUri("")
+                    .introspectionClientCredentials("id", "secret");
+            });
         });
 
         // CSRF Security configuration

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CsrfController {
-    
-    @GetMapping("/csrf")
+
+    @GetMapping("/public/csrf")
     public void getCsrf() {}
 }

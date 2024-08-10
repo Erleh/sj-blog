@@ -1,6 +1,7 @@
 package com.spicejack.sj.services;
 
 import com.spicejack.sj.general.dto.GoogleTokenExchangeDto;
+import com.spicejack.sj.general.dto.GoogleTokenInfoDto;
 import com.spicejack.sj.proxies.GoogleAuthApisProxy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,10 @@ public class GoogleAuthService {
                 "authorization_code",
                 this.redirect_uri
         );
+    }
+
+    public GoogleTokenInfoDto getGoogleTokenInfo(String accessToken) {
+        // Possible error can occur if there is a failure to introspect the provided token
+        return googleAuthApisProxy.getTokenInfo(accessToken);
     }
 }

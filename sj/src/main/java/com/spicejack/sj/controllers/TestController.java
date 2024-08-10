@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestController {
-    @GetMapping("/get_hello")
+    @GetMapping("/public/get_hello")
     String testGet() {
         return "Hello";
     }
 
-    @GetMapping("/get_csrf")
+    @GetMapping("/public/get_csrf")
     String testGetCsrf(
             HttpServletRequest request,
             HttpServletResponse response
