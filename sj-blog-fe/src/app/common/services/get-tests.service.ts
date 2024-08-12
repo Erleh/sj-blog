@@ -12,7 +12,7 @@ export class GetTestsService {
 
   getHello() {
     return this.http.get(
-      `${this.apiUrl}/get_hello`,
+      `${this.apiUrl}/public/test/get_hello`,
       { 
         responseType: 'text' 
       }
@@ -21,10 +21,17 @@ export class GetTestsService {
 
   getCsrf() {
     return this.http.get(
-      `${this.apiUrl}/get_csrf`,
-      { 
-        responseType: 'text' 
+      `${this.apiUrl}/public/test/get_csrf`,
+      {
+        responseType: 'text'
       }
+    );
+  }
+
+  getUser() {
+    console.log("Get user pressed");
+    return this.http.get(
+      `${this.apiUrl}/public/test/get_user`
     );
   }
 }

@@ -16,15 +16,22 @@ export class TestbarComponent {
 
   onGetHelloEvent() {
     this.getTestService.getHello().subscribe(res => {
-      console.log("---GET /get_hello---");
+      console.log("---GET /test/get_hello---");
       console.log(res);
     });
   }
 
   onGetCsrfEvent() {
     this.getTestService.getCsrf().subscribe(res => {
-      console.log("---GET /get_csrf---");
+      console.log("---GET /test/get_csrf---");
       console.log(res);
     });
+  }
+
+  onGetUserEvent() {
+    this.getTestService.getUser().subscribe(res => {
+      console.log("---Get /test/get_user---");
+      console.log(res);
+    })
   }
 }

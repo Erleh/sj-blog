@@ -10,6 +10,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class GetTestsComponent {
   @Output() getHello = new EventEmitter();
   @Output() getCsrf = new EventEmitter();
+  @Output() getUser = new EventEmitter();
 
   getHelloRequest() {
     this.getHello.emit();
@@ -17,5 +18,9 @@ export class GetTestsComponent {
 
   getCsrfRequest() {
     this.getCsrf.emit();
+  }
+
+  getUserRequest() {
+    this.getUser.emit();
   }
 }
