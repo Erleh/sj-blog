@@ -51,6 +51,11 @@ export class GoogleAuthService {
     this.googleAuthControllerProxy.exchangeAuthCodeForTokens(authCode).subscribe(
       res => {
         console.log(res);
+        // Test if the user exists
+
+        // If not, request to finish making an account
+
+        // Else continue
       }
     )
   }

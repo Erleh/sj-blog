@@ -11,11 +11,14 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Configuration
 public class SecurityChainConfig {
     private final CorsConfig corsConfig;
+    private final GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector;
 
     public SecurityChainConfig(
-            CorsConfig corsConfig
+            CorsConfig corsConfig,
+            GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector
     ) {
         this.corsConfig = corsConfig;
+        this.googleOpaqueTokenIntrospector = googleOpaqueTokenIntrospector;
     }
 
     @Bean
@@ -33,8 +36,7 @@ public class SecurityChainConfig {
         http.oauth2ResourceServer(oauth2 -> {oauth2
             .opaqueToken(opaqueToken -> {
                 opaqueToken
-                    .introspectionUri("")
-                    .introspectionClientCredentials("id", "secret");
+                    .introspector(googleOpaqueTokenIntrospector);
             });
         });
 

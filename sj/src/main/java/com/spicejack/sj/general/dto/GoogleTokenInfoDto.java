@@ -1,5 +1,8 @@
 package com.spicejack.sj.general.dto;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GoogleTokenInfoDto {
     String azp;
     String aud;
@@ -74,5 +77,20 @@ public class GoogleTokenInfoDto {
 
     public String getExpires_in() {
         return expires_in;
+    }
+
+    public Map<String, Object> getMappedAttributes() {
+        Map<String, Object> attributes = new HashMap<>();
+
+        attributes.put("azp", getAzp());
+        attributes.put("aud", getAud());
+        attributes.put("sub", getSub());
+        attributes.put("scope", getScope());
+        attributes.put("exp", getExp());
+        attributes.put("expires_in", getExpires_in());
+        attributes.put("email", getEmail());
+        attributes.put("email_verified", getEmail_verified());
+
+        return attributes;
     }
 }

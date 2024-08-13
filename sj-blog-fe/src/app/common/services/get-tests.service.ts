@@ -29,7 +29,6 @@ export class GetTestsService {
   }
 
   getUser() {
-    console.log("Get user pressed");
     return this.http.get(
       `${this.apiUrl}/public/test/get_user`
     );
