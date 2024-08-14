@@ -50,7 +50,7 @@ public class GoogleAuthController {
         return new ResponseEntity<>(info ,HttpStatus.OK);
     }
 
-    @GetMapping("/public/does_user_exist")
+    @GetMapping("/public/google_does_user_exist")
     public boolean doesUserExist(
             @CookieValue("ACCESS_TOKEN") String accessToken
     ) {

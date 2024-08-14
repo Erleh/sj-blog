@@ -1,0 +1,6 @@
+<form #userCreationForm="ngForm" (ngSubmit)="onSubmit(userCreationForm)">
+    <p>Finish creating your account by selecting a username.</p>
+    <label for="username">Username:</label>
+    <input name="username" type="text" maxlength="20" [(ngModel)]="username" required>
+    <button type="submit">Create Account</button>
+</form>

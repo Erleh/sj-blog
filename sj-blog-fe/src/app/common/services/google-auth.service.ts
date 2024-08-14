@@ -55,7 +55,7 @@ export class GoogleAuthService {
 
         // If not, request to finish making an account
 
-        // Else continue
+        // Else continue/do nothing
       }
     )
   }

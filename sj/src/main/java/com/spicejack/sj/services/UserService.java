@@ -33,6 +33,8 @@ public class UserService {
         return userRepository.checkIfUserExistsByEmail(email);
     }
 
+    public boolean checkIfUserExistsByUsername(String username) { return userRepository.checkIfUserExistsByUsername(username); }
+
     public Collection<String> findUserRolesByEmail(String email) { return userRepository.findUserRolesByEmail(email); }
 
     public void createUser(String username, String email, boolean isActive) {

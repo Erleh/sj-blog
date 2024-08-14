@@ -3,11 +3,12 @@ import { GoogleAuthComponent } from "./google-auth/google-auth.component";
 import { GoogleAuthService } from '../common/services/google-auth.service';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { CsrfService } from '../common/services/csrf.service';
+import { CreateAccountFormComponent } from "./create-account-form/create-account-form.component";
 
 @Component({
   selector: 'app-authservers',
   standalone: true,
-  imports: [RouterOutlet, GoogleAuthComponent],
+  imports: [RouterOutlet, GoogleAuthComponent, CreateAccountFormComponent],
   templateUrl: './authservers.component.html',
   styleUrl: './authservers.component.css'
 })
