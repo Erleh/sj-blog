@@ -2,8 +2,10 @@ package com.spicejack.sj.controllers;
 
 import com.spicejack.sj.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.logging.Logger;
 
 @RestController
 public class UserController {
@@ -14,7 +16,7 @@ public class UserController {
 
     @PostMapping("/public/does_username_exist")
     boolean doesUsernameExist(
-            @RequestParam String username
+            @RequestBody String username
     ) {
         return userService.checkIfUserExistsByUsername(username);
     }

@@ -1,5 +1,6 @@
 package com.spicejack.sj.repositories;
 
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import com.spicejack.sj.general.dto.UserDto;
@@ -29,6 +30,7 @@ public interface UserRepository extends CrudRepository<UserDto, Long> {
     // Possible errors to account for:
     //      if username already exists
     //      if email already exists
+    @Modifying
     @Query("INSERT INTO users (id, username, email, isActive, creationTime) VALUES (DEFAULT, :username, :email, :isActive, DEFAULT)")
     void createUser(String username, String email, boolean isActive);
 }

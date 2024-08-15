@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleAuthComponent } from "./google-auth/google-auth.component";
 import { GoogleAuthService } from '../common/services/google-auth.service';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { CsrfService } from '../common/services/csrf.service';
 import { CreateAccountFormComponent } from "./create-account-form/create-account-form.component";
 
@@ -14,16 +14,15 @@ import { CreateAccountFormComponent } from "./create-account-form/create-account
 })
 export class AuthserversComponent implements OnInit{
   constructor(
-    private googleAuth: GoogleAuthService,
+    private googleAuthService: GoogleAuthService,
     private csrf: CsrfService,
-    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
   }
 
   handleAuthWithGoogle() {
-    this.googleAuth.login();
+    this.googleAuthService.requestGoogleAuthCode();
   }
 
   // Redirection occurs when accessing the authorization server page for user permissions
@@ -34,8 +33,8 @@ export class AuthserversComponent implements OnInit{
       // Ensure that client has active csrf token
       this.csrf.getCsrf().subscribe(res => {
         // Continue with google code flow using backend for exchange
-        let authCode = this.googleAuth.retrieveGoogleAuthorizationCode();
-        this.googleAuth.requestGoogleTokens(authCode);
+        let authCode = this.googleAuthService.retrieveGoogleAuthorizationCode();
+        this.googleAuthService.requestGoogleTokens(authCode);
       });
     }
   }

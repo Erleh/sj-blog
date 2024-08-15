@@ -10,11 +10,12 @@ export class AccountService {
     private userControllerProxy: UserControllerProxyService
   ) { }
 
-  makeAccount(username: String) {
+  createAccount(username: String) {
     
   }
 
   checkUsername(username: String) {
+    console.log("checking name: " + username);
     return this.userControllerProxy.checkIfUsernameExists(username);
   }
 }

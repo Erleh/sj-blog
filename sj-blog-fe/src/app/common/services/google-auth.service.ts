@@ -37,7 +37,6 @@ export class GoogleAuthService {
       
       // Check if authCode exists
       if (uriAuthCode !== null) {
-        console.log(decodeURIComponent(uriAuthCode));
         // send authCode for exchange
         return decodeURIComponent(uriAuthCode);
       }
@@ -49,20 +48,35 @@ export class GoogleAuthService {
   // Use the retrieved authCode to exchange for Google Auth token
   requestGoogleTokens(authCode: String) {
     this.googleAuthControllerProxy.exchangeAuthCodeForTokens(authCode).subscribe(
-      res => {
-        console.log(res);
+      () => {
         // Test if the user exists
-
-        // If not, request to finish making an account
-
-        // Else continue/do nothing
+        this.checkForUserByToken();
       }
     )
+  }
+
+  // Test if user exists through the given access token
+  checkForUserByToken() {
+
+    this.googleAuthControllerProxy.checkIfUserExists().subscribe(exists => {
+      if (!exists) {
+        // The does not exist, redirect to the create_account page
+      }
+      //
+      //
+      // else login
+      //
+      //
+    });
+  }
+
+  createAccount(username: String) {
+    this.googleAuthControllerProxy.createAccountWithGoogleAccessToken(username)
+      .subscribe();
   }
   
   login() {
     // login here, authorize the user
-    this.requestGoogleAuthCode();
   }
 
   logout() {

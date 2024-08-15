@@ -17,4 +17,17 @@ export class GoogleAuthControllerProxyService {
       authCode
     );
   }
+
+  checkIfUserExists() {
+    return this.httpClient.get(
+      environment.apiUrl + "/public/google_does_user_exist"
+    );
+  }
+
+  createAccountWithGoogleAccessToken(username: String) {
+    return this.httpClient.post(
+      environment.apiUrl + "/public/google_create_user",
+      username
+    );
+  }
 }

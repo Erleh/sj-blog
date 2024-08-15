@@ -11,6 +11,7 @@ export class UserControllerProxyService {
   ) {}
 
   checkIfUsernameExists(username: String) {
+    console.log("checkIfUsernameExists called");
     return this.httpClient.post(
       environment.apiUrl + "/public/does_username_exist",
       username
