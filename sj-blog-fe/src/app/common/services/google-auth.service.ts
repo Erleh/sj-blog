@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { getGoogleAuthCodeQueryString } from '../../configurations/google-auth.config';
 import { GoogleAuthControllerProxyService } from '../proxies/google-auth-controller-proxy.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 export class GoogleAuthService {
   constructor(
     private googleAuthControllerProxy: GoogleAuthControllerProxyService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   requestGoogleAuthCode() {
@@ -61,25 +63,14 @@ export class GoogleAuthService {
     this.googleAuthControllerProxy.checkIfUserExists().subscribe(exists => {
       if (!exists) {
         // The does not exist, redirect to the create_account page
+      } else {
+        this.authService.login();
       }
-      //
-      //
-      // else login
-      //
-      //
     });
   }
 
   createAccount(username: String) {
     this.googleAuthControllerProxy.createAccountWithGoogleAccessToken(username)
       .subscribe();
-  }
-  
-  login() {
-    // login here, authorize the user
-  }
-
-  logout() {
-    // logoff here, remove authorities
   }
 }

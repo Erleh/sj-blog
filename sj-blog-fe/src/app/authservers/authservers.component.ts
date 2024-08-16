@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GoogleAuthComponent } from "./google-auth/google-auth.component";
 import { GoogleAuthService } from '../common/services/google-auth.service';
 import { RouterOutlet } from '@angular/router';
@@ -12,14 +12,11 @@ import { CreateAccountFormComponent } from "./create-account-form/create-account
   templateUrl: './authservers.component.html',
   styleUrl: './authservers.component.css'
 })
-export class AuthserversComponent implements OnInit{
+export class AuthserversComponent{
   constructor(
     private googleAuthService: GoogleAuthService,
     private csrf: CsrfService,
   ) {}
-
-  ngOnInit() {
-  }
 
   handleAuthWithGoogle() {
     this.googleAuthService.requestGoogleAuthCode();
