@@ -15,9 +15,10 @@ import java.util.logging.Logger;
 
 @Component
 public class GoogleOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
-    Logger logger = Logger.getLogger(GoogleOpaqueTokenIntrospector.class.toString());
     private final GoogleAuthService googleAuthService;
     private final UserService userService;
+
+    private final Logger logger = Logger.getLogger(GoogleOpaqueTokenIntrospector.class.toString());
 
     public GoogleOpaqueTokenIntrospector(
             GoogleAuthService googleAuthService,
@@ -37,10 +38,9 @@ public class GoogleOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
 
         for (String role: roles) {
+            logger.info("Role = " + role);
             authorities.add(new SimpleGrantedAuthority(role));
         }
-
-        logger.info("User Authenticated Principal Created");
 
         return new OAuth2IntrospectionAuthenticatedPrincipal(
                 tokenInfo.getMappedAttributes(),

@@ -33,4 +33,22 @@ export class GetTestsService {
       `${this.apiUrl}/public/test/get_user`
     );
   }
+
+  privateGetHello() {
+    return this.http.get(
+      `${this.apiUrl}/api/private_get_hello`,
+      {
+        responseType: 'text'
+      }
+    );
+  }
+
+  adminGetHello() {
+    return this.http.get(
+      `${this.apiUrl}/api/admin_get_hello`,
+      {
+        responseType: 'text'
+      }
+    );
+  }
 }

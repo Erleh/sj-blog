@@ -12,13 +12,16 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 public class SecurityChainConfig {
     private final CorsConfig corsConfig;
     private final GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector;
+    private final CookieBearerTokenResolver cookieBearerTokenResolver;
 
     public SecurityChainConfig(
             CorsConfig corsConfig,
-            GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector
+            GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector,
+            CookieBearerTokenResolver bearerTokenResolver
     ) {
         this.corsConfig = corsConfig;
         this.googleOpaqueTokenIntrospector = googleOpaqueTokenIntrospector;
+        this.cookieBearerTokenResolver = bearerTokenResolver;
     }
 
     @Bean
@@ -37,7 +40,8 @@ public class SecurityChainConfig {
             .opaqueToken(opaqueToken -> {
                 opaqueToken
                     .introspector(googleOpaqueTokenIntrospector);
-            });
+            })
+            .bearerTokenResolver(cookieBearerTokenResolver);
         });
 
         // CSRF Security configuration

@@ -3,6 +3,7 @@ package com.spicejack.sj.controllers;
 import com.spicejack.sj.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,5 +39,16 @@ public class TestController {
     boolean testGetUser() {
         logger.info("Getting user");
         return userService.checkIfUserExistsByEmail("example@example.com");
+    }
+
+    @GetMapping("/api/private_get_hello")
+    String testPrivateGet() {
+        return "Hello";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/api/admin_get_hello")
+    String testAdminHello() {
+        return "Hello admin";
     }
 }

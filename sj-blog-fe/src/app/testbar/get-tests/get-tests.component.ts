@@ -11,6 +11,8 @@ export class GetTestsComponent {
   @Output() getHello = new EventEmitter();
   @Output() getCsrf = new EventEmitter();
   @Output() getUser = new EventEmitter();
+  @Output() privateGetHello = new EventEmitter();
+  @Output() adminGetHello = new EventEmitter();
 
   getHelloRequest() {
     this.getHello.emit();
@@ -22,5 +24,13 @@ export class GetTestsComponent {
 
   getUserRequest() {
     this.getUser.emit();
+  }
+
+  privateGetHelloRequest() {
+    this.privateGetHello.emit();
+  }
+
+  adminGetHelloRequest() {
+    this.adminGetHello.emit();
   }
 }

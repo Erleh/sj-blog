@@ -1,5 +1,6 @@
 package com.spicejack.sj.general.dto;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,15 +9,19 @@ public class GoogleTokenInfoDto {
     String aud;
     String sub;
     String scope;
-    String exp;
-    String expires_in;
+    Instant exp;
+    long expires_in;
     String email;
     String email_verified;
 
     public GoogleTokenInfoDto(){}
 
-    public void setExpires_in(String expires_in) {
+    public void setExpires_in(long expires_in) {
         this.expires_in = expires_in;
+    }
+
+    public void setExp(Instant exp) {
+        this.exp = exp;
     }
 
     public void setScope(String scope) {
@@ -25,10 +30,6 @@ public class GoogleTokenInfoDto {
 
     public void setSub(String sub) {
         this.sub = sub;
-    }
-
-    public void setExp(String exp) {
-        this.exp = exp;
     }
 
     public void setEmail_verified(String email_verified) {
@@ -55,7 +56,7 @@ public class GoogleTokenInfoDto {
         return sub;
     }
 
-    public String getExp() {
+    public Instant getExp() {
         return exp;
     }
 
@@ -75,7 +76,7 @@ public class GoogleTokenInfoDto {
         return email;
     }
 
-    public String getExpires_in() {
+    public long getExpires_in() {
         return expires_in;
     }
 

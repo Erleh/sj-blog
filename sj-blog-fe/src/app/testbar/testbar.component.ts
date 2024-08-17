@@ -34,4 +34,18 @@ export class TestbarComponent {
       console.log(res);
     })
   }
+
+  onPrivateGetHelloEvent() {
+    this.getTestService.privateGetHello().subscribe(res => {
+      console.log("---Private GET /api/private_get_hello");
+      console.log(res);
+    });
+  }
+
+  onAdminGetHelloEvent() {
+    this.getTestService.adminGetHello().subscribe(res => {
+      console.log("---Private GET /api/admin_get_hello");
+      console.log(res);
+    })
+  }
 }
