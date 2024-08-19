@@ -49,24 +49,13 @@ export class GoogleAuthService {
 
   // Use the retrieved authCode to exchange for Google Auth token
   requestGoogleTokens(authCode: String) {
-    this.googleAuthControllerProxy.exchangeAuthCodeForTokens(authCode).subscribe(
-      () => {
-        // Test if the user exists
-        this.checkForUserByToken();
-      }
-    )
+    // Tokens will be returned as httpOnly cookies
+    return this.googleAuthControllerProxy.exchangeAuthCodeForTokens(authCode);
   }
 
   // Test if user exists through the given access token
   checkForUserByToken() {
-
-    this.googleAuthControllerProxy.checkIfUserExists().subscribe(exists => {
-      if (!exists) {
-        // The does not exist, redirect to the create_account page
-      } else {
-        this.authService.login();
-      }
-    });
+    return this.googleAuthControllerProxy.checkIfUserExists();
   }
 
   createAccount(username: String) {

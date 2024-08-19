@@ -1,4 +1,6 @@
 <div>
-    <app-google-auth (authWithGoogle)="handleAuthWithGoogle()"></app-google-auth>
-    <router-outlet (activate)="handleRedirect($event)"></router-outlet>
+    @if (!shouldCreateAccount) {
+        <app-google-auth (authWithGoogle)="handleAuthWithGoogle()"></app-google-auth>
+    }
+    <router-outlet (activate)="handleAuthAfterRedirect($event)"></router-outlet>
 </div>
