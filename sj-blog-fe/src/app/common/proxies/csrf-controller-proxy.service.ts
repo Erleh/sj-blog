@@ -12,7 +12,7 @@ export class CsrfControllerProxyService {
 
   getCsrf() {
     return this.httpClient.get(
-      environment.apiUrl + "/public/csrf"
+      `${environment.apiUrl}/public/csrf`
     );
   }
 }

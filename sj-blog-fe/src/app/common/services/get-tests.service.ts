@@ -51,4 +51,13 @@ export class GetTestsService {
       }
     );
   }
+
+  getIsAdmin() {
+    return this.http.get(
+      `${this.apiUrl}/api/is_admin`,
+      {
+        responseType: 'text'
+      }
+    );
+  }
 }

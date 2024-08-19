@@ -3,6 +3,7 @@ import { PostlistComponent } from './postlist/postlist.component';
 import { AuthserversComponent } from './authservers/authservers.component';
 import { GoogleAuthRedirectComponent } from './authservers/google-auth-redirect/google-auth-redirect.component';
 import { CreateAccountFormComponent } from './authservers/create-account-form/create-account-form.component';
+import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
 
 export const routes: Routes = [
     {
@@ -18,6 +19,10 @@ export const routes: Routes = [
                 component: CreateAccountFormComponent
             }
         ]
+    },
+    {
+        path: 'unauthorized',
+        component: UnauthorizedComponent
     },
     {
         path: '**', 

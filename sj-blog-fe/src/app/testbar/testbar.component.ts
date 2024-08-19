@@ -42,9 +42,16 @@ export class TestbarComponent {
     });
   }
 
+  onGetIsAdminEvent() {
+    this.getTestService.getIsAdmin().subscribe(res => {
+      console.log("---Private GET /api/is_admin");
+      console.log(res);
+    })
+  }
+
   onAdminGetHelloEvent() {
     this.getTestService.adminGetHello().subscribe(res => {
-      console.log("---Private GET /api/admin_get_hello");
+      console.log("---Private requires admin role GET /api/admin_get_hello");
       console.log(res);
     })
   }

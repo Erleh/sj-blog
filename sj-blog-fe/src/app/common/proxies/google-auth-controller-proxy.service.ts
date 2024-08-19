@@ -13,20 +13,20 @@ export class GoogleAuthControllerProxyService {
 
   exchangeAuthCodeForTokens(authCode: String) {
     return this.httpClient.post(
-      environment.apiUrl + "/public/google_token_exchange",
+      `${environment.apiUrl}/public/google_token_exchange`,
       authCode
     );
   }
 
   checkIfUserExists() {
     return this.httpClient.get(
-      environment.apiUrl + "/public/google_does_user_exist"
+      `${environment.apiUrl}/public/google_does_user_exist`
     );
   }
 
   createAccountWithGoogleAccessToken(username: String) {
     return this.httpClient.post(
-      environment.apiUrl + "/public/google_create_user",
+      `${environment.apiUrl}/public/google_create_user`,
       username
     );
   }

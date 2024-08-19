@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,15 @@ export class UserControllerProxyService {
   ) {}
 
   checkIfUsernameExists(username: String) {
-    console.log("checkIfUsernameExists called");
     return this.httpClient.post(
-      environment.apiUrl + "/public/does_username_exist",
+      `${environment.apiUrl}/public/does_username_exist`,
       username
+    );
+  }
+
+  checkIfUserIsAdmin() {
+    return this.httpClient.get<boolean>(
+      `${environment.apiUrl}/api/is_admin`
     );
   }
 }

@@ -12,6 +12,7 @@ export class GetTestsComponent {
   @Output() getCsrf = new EventEmitter();
   @Output() getUser = new EventEmitter();
   @Output() privateGetHello = new EventEmitter();
+  @Output() getIsAdmin = new EventEmitter();
   @Output() adminGetHello = new EventEmitter();
 
   getHelloRequest() {
@@ -28,6 +29,10 @@ export class GetTestsComponent {
 
   privateGetHelloRequest() {
     this.privateGetHello.emit();
+  }
+
+  isAdminRequest() {
+    this.getIsAdmin.emit();
   }
 
   adminGetHelloRequest() {

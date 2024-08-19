@@ -38,7 +38,6 @@ public class GoogleOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
 
         for (String role: roles) {
-            logger.info("Role = " + role);
             authorities.add(new SimpleGrantedAuthority(role));
         }
 

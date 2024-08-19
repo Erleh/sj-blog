@@ -2,7 +2,6 @@ package com.spicejack.sj.services;
 
 import com.spicejack.sj.general.dto.UserDto;
 import com.spicejack.sj.repositories.UserRepository;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
