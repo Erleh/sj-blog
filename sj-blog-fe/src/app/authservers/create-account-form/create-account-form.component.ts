@@ -3,6 +3,8 @@ import { AccountService } from '../../common/services/account.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { GoogleAuthService } from '../../common/services/google-auth.service';
+import { AuthService } from '../../common/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account-form',
@@ -17,7 +19,9 @@ export class CreateAccountFormComponent {
   constructor(
     private googleAuthService: GoogleAuthService,
     private accountService: AccountService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   onSubmit(userCreationForm:NgForm) {
@@ -62,6 +66,8 @@ export class CreateAccountFormComponent {
     // Select the right iss to create an account with
     if (iss === "google.com") {
       this.googleAuthService.createAccount(username);
+      this.authService.login();
+      this.router.navigateByUrl("/");
     }
   }
 }

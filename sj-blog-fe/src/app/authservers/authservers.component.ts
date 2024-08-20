@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GoogleAuthComponent } from "./google-auth/google-auth.component";
 import { GoogleAuthService } from '../common/services/google-auth.service';
 import { Router, RouterOutlet } from '@angular/router';
@@ -13,7 +13,7 @@ import { AuthService } from '../common/services/auth.service';
   templateUrl: './authservers.component.html',
   styleUrl: './authservers.component.css'
 })
-export class AuthserversComponent {
+export class AuthserversComponent implements OnInit{
   shouldCreateAccount = false;
 
   constructor(
@@ -23,6 +23,13 @@ export class AuthserversComponent {
     private authService: AuthService
   ) {}
 
+
+  ngOnInit() {
+    if (this.authService.isLoggedIn$) {
+      this.router.navigateByUrl("/");
+    }
+  }
+  
   // Consider logged in accounts trying to reach the login page
   //
   // They should be redirected to their account page (if any) or the home page
