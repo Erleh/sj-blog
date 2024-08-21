@@ -5,6 +5,8 @@ import { GoogleAuthRedirectComponent } from './authservers/google-auth-redirect/
 import { CreateAccountFormComponent } from './authservers/create-account-form/create-account-form.component';
 import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.component';
 import { CanShowCreateAccountService } from './common/interceptors/routeGuard/can-show-create-account.service';
+import { CanAdminAccessService } from './common/interceptors/routeGuard/can-admin-access.service';
+import { AdmindashComponent } from './admindash/admindash.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +23,11 @@ export const routes: Routes = [
         path: 'create_account',
         canActivate: [CanShowCreateAccountService],
         component: CreateAccountFormComponent
+    },
+    {
+        path: 'admin',
+        canActivate: [CanAdminAccessService],
+        component: AdmindashComponent
     },
     {
         path: 'unauthorized',

@@ -1,4 +1,4 @@
-package com.spicejack.sj.configurations;
+package com.spicejack.sj.configurations.customizers;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,5 +1,6 @@
 package com.spicejack.sj.configurations;
 
+import com.spicejack.sj.configurations.customizers.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,15 +14,18 @@ public class SecurityChainConfig {
     private final CorsConfig corsConfig;
     private final GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector;
     private final CookieBearerTokenResolver cookieBearerTokenResolver;
+    private final CustomLogoutHandler logoutHandler;
 
     public SecurityChainConfig(
             CorsConfig corsConfig,
             GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector,
-            CookieBearerTokenResolver bearerTokenResolver
+            CookieBearerTokenResolver bearerTokenResolver,
+            CustomLogoutHandler logoutHandler
     ) {
         this.corsConfig = corsConfig;
         this.googleOpaqueTokenIntrospector = googleOpaqueTokenIntrospector;
         this.cookieBearerTokenResolver = bearerTokenResolver;
+        this.logoutHandler = logoutHandler;
     }
 
     @Bean
@@ -53,6 +57,12 @@ public class SecurityChainConfig {
         // CORS configuration
         http.cors(cors -> {
             cors.configurationSource(corsConfig.getCorsConfiguration());
+        });
+
+        // Logout Configuration
+        http.logout(logout -> {
+            logout.logoutUrl("/api/logout");
+            logout.addLogoutHandler(logoutHandler);
         });
 
         return http.build();

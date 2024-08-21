@@ -1,6 +1,7 @@
 package com.spicejack.sj.services;
 
 import com.spicejack.sj.general.dto.UserDto;
+import com.spicejack.sj.repositories.RefreshTokenRepository;
 import com.spicejack.sj.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +10,14 @@ import java.util.Collection;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
 
     public UserService(
-            UserRepository userRepository
+            UserRepository userRepository,
+            RefreshTokenRepository refreshTokenRepository
     ) {
         this.userRepository = userRepository;
+        this.refreshTokenRepository = refreshTokenRepository;
     }
 
     public UserDto getUserById(long id) {
@@ -38,5 +42,9 @@ public class UserService {
 
     public void createUser(String username, String email, boolean isActive) {
         userRepository.createUser(username, email, isActive);
+    }
+
+    public void saveRefreshToken(long userId, String token, boolean isValid) {
+        refreshTokenRepository.addRefreshToken(userId, token, isValid);
     }
 }

@@ -23,4 +23,11 @@ export class UserControllerProxyService {
       `${environment.apiUrl}/api/is_admin`
     );
   }
+
+  logout() {
+    return this.httpClient.post(
+      `${environment.apiUrl}/api/logout`,
+      {}
+    );
+  }
 }

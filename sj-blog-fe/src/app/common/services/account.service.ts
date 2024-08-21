@@ -11,7 +11,6 @@ export class AccountService {
   ) { }
   
   checkUsername(username: String) {
-    console.log("checking name: " + username);
     return this.userControllerProxy.checkIfUsernameExists(username);
   }
 

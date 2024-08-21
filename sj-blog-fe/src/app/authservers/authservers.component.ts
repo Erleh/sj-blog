@@ -23,11 +23,12 @@ export class AuthserversComponent implements OnInit{
     private authService: AuthService
   ) {}
 
-
   ngOnInit() {
-    if (this.authService.isLoggedIn$) {
-      this.router.navigateByUrl("/");
-    }
+    this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
+      if (isLoggedIn) {
+        this.router.navigateByUrl("/");
+      }
+    })
   }
   
   // Consider logged in accounts trying to reach the login page

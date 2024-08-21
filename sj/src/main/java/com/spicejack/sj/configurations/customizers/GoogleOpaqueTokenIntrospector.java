@@ -1,4 +1,4 @@
-package com.spicejack.sj.configurations;
+package com.spicejack.sj.configurations.customizers;
 
 import com.spicejack.sj.general.dto.GoogleTokenInfoDto;
 import com.spicejack.sj.services.GoogleAuthService;
@@ -41,7 +41,11 @@ public class GoogleOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
             authorities.add(new SimpleGrantedAuthority(role));
         }
 
+        // email is being used as the principal name
+        // attached as attributes are GoogleTokenInfoDto properties
+        // authorities are assigned roles from the database
         return new OAuth2IntrospectionAuthenticatedPrincipal(
+                tokenInfo.getEmail(),
                 tokenInfo.getMappedAttributes(),
                 authorities
         );

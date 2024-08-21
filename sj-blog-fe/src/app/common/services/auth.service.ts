@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { UserControllerProxyService } from '../proxies/user-controller-proxy.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor() { }
+  constructor(
+    private userControllerProxy: UserControllerProxyService
+  ) { }
 
   private loggedIn = new BehaviorSubject<boolean>(false);
 
-  isLoggedIn$ = this.loggedIn.asObservable();
+  isLoggedIn$: Observable<boolean> = this.loggedIn.asObservable();
 
   login() {
     this.loggedIn.next(true);
@@ -17,6 +20,7 @@ export class AuthService {
 
   // Logout should clear all saved tokens
   logout() {
+    this.userControllerProxy.logout().subscribe();
     this.loggedIn.next(false);
   }
 }

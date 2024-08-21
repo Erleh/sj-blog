@@ -14,4 +14,11 @@
             <a href="">Other</a>
         </li>
     </ul>
+    @if (authService.isLoggedIn$ | async) {
+        <ul>
+            <li>
+                <a href="" (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    }
 </nav>

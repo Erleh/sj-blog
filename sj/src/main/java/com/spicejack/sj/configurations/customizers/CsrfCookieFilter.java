@@ -1,4 +1,4 @@
-package com.spicejack.sj.configurations;
+package com.spicejack.sj.configurations.customizers;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

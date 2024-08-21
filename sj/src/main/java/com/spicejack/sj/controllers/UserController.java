@@ -1,21 +1,34 @@
 package com.spicejack.sj.controllers;
 
+import com.spicejack.sj.services.GoogleAuthService;
 import com.spicejack.sj.services.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.server.resource.introspection.OAuth2IntrospectionAuthenticatedPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
 @RestController
 public class UserController {
     private final UserService userService;
-    public UserController(UserService userService) {
+
+    public UserController(
+            UserService userService
+    ) {
         this.userService = userService;
+    }
+
+    @GetMapping("/logged_in")
+    void login(
+        @CookieValue("REFRESH_TOKEN") String refreshToken,
+        @AuthenticationPrincipal OAuth2IntrospectionAuthenticatedPrincipal principal
+    ) {
+        String userEmail = principal.getName();
+        long userId = userService.getUserIdByEmail(userEmail);
+
+        // Save refresh token
+        userService.saveRefreshToken(userId, refreshToken, true);
     }
 
     @PostMapping("/public/does_username_exist")

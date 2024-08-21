@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS refresh_tokens (
     id          INTEGER AUTO_INCREMENT      PRIMARY KEY,
     user_id     INTEGER                     NOT NULL,
     token       TEXT                        NOT NULL,
-    expires_at  DATETIME                    NOT NULL,
+    isValid     BIT                         NOT NULL,
     created_at  DATETIME                    DEFAULT CURRENT_TIMESTAMP,
     updated_at  DATETIME                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id)   REFERENCES users(id)
