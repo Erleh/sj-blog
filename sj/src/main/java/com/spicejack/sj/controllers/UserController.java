@@ -19,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/logged_in")
+    @GetMapping("/api/login")
     void login(
         @CookieValue("REFRESH_TOKEN") String refreshToken,
         @AuthenticationPrincipal OAuth2IntrospectionAuthenticatedPrincipal principal

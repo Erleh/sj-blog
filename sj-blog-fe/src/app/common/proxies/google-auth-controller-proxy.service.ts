@@ -30,4 +30,11 @@ export class GoogleAuthControllerProxyService {
       username
     );
   }
+
+  revokeToken() {
+    return this.httpClient.post(
+      `${environment.apiUrl}/api/google_revoke_token`,
+      {}
+    );
+  }
 }

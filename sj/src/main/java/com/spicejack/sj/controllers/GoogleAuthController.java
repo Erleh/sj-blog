@@ -85,4 +85,11 @@ public class GoogleAuthController {
         // Create account
         userService.createUser(username, tokenInfo.getEmail(), true);
     }
+
+    @GetMapping("/api/google_revoke_token")
+    public void revokeToken(
+            @CookieValue("REFRESH_TOKEN") String refreshToken
+    ) {
+        googleAuthService.revokeToken(refreshToken);
+    }
 }

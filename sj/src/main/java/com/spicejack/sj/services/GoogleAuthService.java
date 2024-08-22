@@ -39,4 +39,8 @@ public class GoogleAuthService {
         // Possible error can occur if there is a failure to introspect the provided token
         return googleAuthApisProxy.getTokenInfo(accessToken);
     }
+
+    public void revokeToken(String refreshToken) {
+        googleAuthApisProxy.revokeToken(refreshToken);
+    }
 }

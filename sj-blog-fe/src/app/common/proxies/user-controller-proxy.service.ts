@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +21,12 @@ export class UserControllerProxyService {
     return this.httpClient.get<boolean>(
       `${environment.apiUrl}/api/is_admin`
     );
+  }
+
+  login() {
+    return this.httpClient.get(
+      `${environment.apiUrl}/api/login`
+    )
   }
 
   logout() {

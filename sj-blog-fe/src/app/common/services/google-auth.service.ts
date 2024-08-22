@@ -62,4 +62,9 @@ export class GoogleAuthService {
     this.googleAuthControllerProxy.createAccountWithGoogleAccessToken(username)
       .subscribe();
   }
+
+  // For revoking the active user's refresh token on logout / when needed
+  revokeToken() {
+    return this.googleAuthControllerProxy.revokeToken();
+  }
 }
