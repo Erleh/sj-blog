@@ -22,13 +22,14 @@ public class UserController {
     @GetMapping("/api/login")
     void login(
         @CookieValue("REFRESH_TOKEN") String refreshToken,
+        @CookieValue("iss") String iss,
         @AuthenticationPrincipal OAuth2IntrospectionAuthenticatedPrincipal principal
     ) {
         String userEmail = principal.getName();
         long userId = userService.getUserIdByEmail(userEmail);
 
         // Save refresh token
-        userService.saveRefreshToken(userId, refreshToken, true);
+        userService.saveRefreshToken(userId, refreshToken, true, iss);
     }
 
     @PostMapping("/public/does_username_exist")

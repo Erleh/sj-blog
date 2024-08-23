@@ -7,10 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface RefreshTokenRepository extends CrudRepository<RefreshToken, Long> {
     @Modifying
-    @Query("INSERT INTO refresh_tokens (id, user_id, token, isValid, created_at, updated_at) VALUES (DEFAULT, :id, :token, :isValid, DEFAULT, DEFAULT)")
-    void addRefreshToken(long id, String token, boolean isValid);
+    @Query("INSERT INTO refresh_tokens (id, user_id, token, iss, isValid, created_at, updated_at) VALUES (DEFAULT, :id, :token, :iss, :isValid, DEFAULT, DEFAULT)")
+    void addRefreshToken(long id, String token, boolean isValid, String iss);
 
     @Modifying
-    @Query("DELETE FROM refresh_tokens WHERE token = :accessToken")
-    void removeAccessToken(String accessToken);
+    @Query("DELETE FROM refresh_tokens WHERE token = :refreshToken")
+    void removeRefreshToken(String refreshToken);
 }

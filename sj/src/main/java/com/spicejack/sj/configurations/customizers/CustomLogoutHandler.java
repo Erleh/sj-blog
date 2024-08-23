@@ -1,17 +1,26 @@
 package com.spicejack.sj.configurations.customizers;
 
+import com.spicejack.sj.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CookieValue;
 
 import java.util.logging.Logger;
 
 @Component
 public class CustomLogoutHandler implements LogoutHandler {
     private final Logger logger = Logger.getLogger(CustomLogoutHandler.class.toString());
+    private final UserService userService;
+
+    public CustomLogoutHandler(
+            UserService userService
+    ) {
+        this.userService = userService;
+    }
 
     @Override
     public void logout(
@@ -19,12 +28,40 @@ public class CustomLogoutHandler implements LogoutHandler {
             HttpServletResponse res,
             Authentication authentication
     ) {
-        // Invalidate refresh token here
-        //
-        //
-        
+        // Find original cookies from the given request
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            String refreshToken = "";
+            String iss = "";
 
-        // Clear Http-only cookies
+            for (Cookie cookie: cookies) {
+                // Retrieve original refresh_token
+                if ("REFRESH_TOKEN".equals(cookie.getName())) {
+                    refreshToken = cookie.getValue();
+                }
+
+                // Retrieve iss
+                if ("iss".equals(cookie.getName())) {
+                    iss = cookie.getValue();
+                }
+            }
+
+            // Revoke/invalidate refresh token
+            if (!refreshToken.isEmpty() && !iss.isEmpty()) {
+                logger.info("Revoking refresh token");
+                userService.revokeRefreshToken(refreshToken, iss);
+            }
+        }
+
+
+        // This currently causes an issue with cookies remaining in the frontend
+        // preventing a way to login without manually removing
+        // the previously saved cookies
+
+
+        logger.info("Clearing cookies---------");
+        // Clear Http-only cookies by replacing original cookies of the same name
+        //
         Cookie accessTokenCookie = new Cookie("ACCESS_TOKEN", null);
         accessTokenCookie.setPath("/");
         accessTokenCookie.setHttpOnly(true);
@@ -38,5 +75,6 @@ public class CustomLogoutHandler implements LogoutHandler {
         refreshTokenCookie.setMaxAge(0);
 
         res.addCookie(refreshTokenCookie);
+        logger.info("Cleared------------");
     }
 }

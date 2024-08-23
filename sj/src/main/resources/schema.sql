@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS refresh_tokens (
     id          INTEGER AUTO_INCREMENT      PRIMARY KEY,
     user_id     INTEGER                     NOT NULL,
     token       TEXT                        NOT NULL,
+    iss         VARCHAR(20)                 NOT NULL,
     isValid     BIT                         NOT NULL,
     created_at  DATETIME                    DEFAULT CURRENT_TIMESTAMP,
     updated_at  DATETIME                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
