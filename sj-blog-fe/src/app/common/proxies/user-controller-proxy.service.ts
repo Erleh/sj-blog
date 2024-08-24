@@ -31,7 +31,7 @@ export class UserControllerProxyService {
 
   logout() {
     return this.httpClient.post(
-      `${environment.apiUrl}/api/logout`,
+      `${environment.apiUrl}/logout`,
       {}
     );
   }

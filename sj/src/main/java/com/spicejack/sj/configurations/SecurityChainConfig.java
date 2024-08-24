@@ -15,17 +15,20 @@ public class SecurityChainConfig {
     private final GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector;
     private final CookieBearerTokenResolver cookieBearerTokenResolver;
     private final CustomLogoutHandler logoutHandler;
+    private final CustomLogoutSuccessHandler logoutSuccessHandler;
 
     public SecurityChainConfig(
             CorsConfig corsConfig,
             GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector,
             CookieBearerTokenResolver bearerTokenResolver,
-            CustomLogoutHandler logoutHandler
+            CustomLogoutHandler logoutHandler,
+            CustomLogoutSuccessHandler logoutSuccessHandler
     ) {
         this.corsConfig = corsConfig;
         this.googleOpaqueTokenIntrospector = googleOpaqueTokenIntrospector;
         this.cookieBearerTokenResolver = bearerTokenResolver;
         this.logoutHandler = logoutHandler;
+        this.logoutSuccessHandler = logoutSuccessHandler;
     }
 
     @Bean
@@ -35,7 +38,7 @@ public class SecurityChainConfig {
         // Authorized paths
         http.authorizeHttpRequests(authorize -> {
             authorize
-                    .requestMatchers("/public/**", "/error", "/webjars/**").permitAll()
+                    .requestMatchers("/public/**", "/error", "/webjars/**", "/login", "/logout").permitAll()
                     .anyRequest().authenticated();
         });
 
@@ -61,8 +64,9 @@ public class SecurityChainConfig {
 
         // Logout Configuration
         http.logout(logout -> {
-            logout.logoutUrl("/api/logout");
+            logout.logoutUrl("/logout");
             logout.addLogoutHandler(logoutHandler);
+            logout.logoutSuccessHandler(logoutSuccessHandler);
         });
 
         return http.build();

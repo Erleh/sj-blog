@@ -45,6 +45,7 @@ public class GoogleAuthController {
         refreshToken.setPath("/");
 
         Cookie iss = new Cookie("iss", "google.com");
+        refreshToken.setHttpOnly(true);
         iss.setPath("/");
 
         response.addCookie(accessToken);

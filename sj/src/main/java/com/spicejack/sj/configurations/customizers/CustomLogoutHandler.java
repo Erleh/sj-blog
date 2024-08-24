@@ -7,13 +7,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CookieValue;
-
-import java.util.logging.Logger;
 
 @Component
 public class CustomLogoutHandler implements LogoutHandler {
-    private final Logger logger = Logger.getLogger(CustomLogoutHandler.class.toString());
     private final UserService userService;
 
     public CustomLogoutHandler(
@@ -48,18 +44,10 @@ public class CustomLogoutHandler implements LogoutHandler {
 
             // Revoke/invalidate refresh token
             if (!refreshToken.isEmpty() && !iss.isEmpty()) {
-                logger.info("Revoking refresh token");
                 userService.revokeRefreshToken(refreshToken, iss);
             }
         }
 
-
-        // This currently causes an issue with cookies remaining in the frontend
-        // preventing a way to login without manually removing
-        // the previously saved cookies
-
-
-        logger.info("Clearing cookies---------");
         // Clear Http-only cookies by replacing original cookies of the same name
         //
         Cookie accessTokenCookie = new Cookie("ACCESS_TOKEN", null);
@@ -75,6 +63,12 @@ public class CustomLogoutHandler implements LogoutHandler {
         refreshTokenCookie.setMaxAge(0);
 
         res.addCookie(refreshTokenCookie);
-        logger.info("Cleared------------");
+
+        Cookie issCookie = new Cookie("iss", null);
+        issCookie.setPath("/");
+        issCookie.setHttpOnly(true);
+        issCookie.setMaxAge(0);
+
+        res.addCookie(issCookie);
     }
 }
