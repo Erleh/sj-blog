@@ -2,12 +2,15 @@ package com.spicejack.sj.controllers;
 
 import com.spicejack.sj.services.GoogleAuthService;
 import com.spicejack.sj.services.UserService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.server.resource.introspection.OAuth2IntrospectionAuthenticatedPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
 @RestController
 public class UserController {
@@ -21,6 +24,7 @@ public class UserController {
 
     @GetMapping("/api/login")
     void login(
+        HttpServletResponse response,
         @CookieValue("REFRESH_TOKEN") String refreshToken,
         @CookieValue("iss") String iss,
         @AuthenticationPrincipal OAuth2IntrospectionAuthenticatedPrincipal principal
@@ -37,6 +41,13 @@ public class UserController {
             @RequestBody String username
     ) {
         return userService.checkIfUserExistsByUsername(username);
+    }
+
+    @GetMapping("/public/is_logged_in")
+    boolean isLoggedIn(
+            @AuthenticationPrincipal OAuth2IntrospectionAuthenticatedPrincipal principal
+    ) {
+        return principal != null;
     }
 
     @GetMapping("/api/is_admin")

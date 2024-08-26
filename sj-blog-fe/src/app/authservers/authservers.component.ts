@@ -20,22 +20,20 @@ export class AuthserversComponent implements OnInit{
     private router: Router,
     private googleAuthService: GoogleAuthService,
     private csrf: CsrfService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
+    // Checks if the user is logged in already
+    this.authService.checkIsLoggedIn();
+
+    // If so, then redirect the user back to the front page instead of login again
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       if (isLoggedIn) {
         this.router.navigateByUrl("/");
       }
-    })
+    });
   }
-  
-  // Consider logged in accounts trying to reach the login page
-  //
-  // They should be redirected to their account page (if any) or the home page
-  // with a message saying they are already logged in
-
 
   handleAuthWithGoogle() {
     this.googleAuthService.requestGoogleAuthCode();
@@ -66,8 +64,7 @@ export class AuthserversComponent implements OnInit{
     this.googleAuthService.checkForUserByToken().subscribe((exists) => {
       if (exists) {
         // Successful login if true
-        this.authService.login();
-
+        this.authService.checkIsLoggedIn();
       } else {
         // Ask to create account if false
         this.shouldCreateAccount = true;

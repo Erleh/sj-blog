@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { getGoogleAuthCodeQueryString } from '../../configurations/google-auth.config';
 import { GoogleAuthControllerProxyService } from '../proxies/google-auth-controller-proxy.service';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,7 @@ import { AuthService } from './auth.service';
 export class GoogleAuthService {
   constructor(
     private googleAuthControllerProxy: GoogleAuthControllerProxyService,
-    private activatedRoute: ActivatedRoute,
-    private authService: AuthService
+    private activatedRoute: ActivatedRoute
   ) {}
 
   requestGoogleAuthCode() {

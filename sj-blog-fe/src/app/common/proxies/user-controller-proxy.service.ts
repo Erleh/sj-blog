@@ -23,6 +23,12 @@ export class UserControllerProxyService {
     );
   }
 
+  checkIsLoggedIn() {
+    return this.httpClient.get<boolean>(
+      `${environment.apiUrl}/public/is_logged_in`
+    );
+  }
+
   login() {
     return this.httpClient.get(
       `${environment.apiUrl}/api/login`
