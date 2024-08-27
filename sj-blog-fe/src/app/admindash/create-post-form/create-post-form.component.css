@@ -1,0 +1,4 @@
+.post-form {
+    flex-direction: column;
+    max-width: 50rem;
+}

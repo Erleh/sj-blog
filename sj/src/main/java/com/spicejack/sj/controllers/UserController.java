@@ -1,8 +1,6 @@
 package com.spicejack.sj.controllers;
 
-import com.spicejack.sj.services.GoogleAuthService;
 import com.spicejack.sj.services.UserService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,7 +8,6 @@ import org.springframework.security.oauth2.server.resource.introspection.OAuth2I
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.logging.Logger;
 
 @RestController
 public class UserController {
