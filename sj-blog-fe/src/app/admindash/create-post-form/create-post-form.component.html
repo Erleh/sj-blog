@@ -1,9 +1,12 @@
-<form class="container-flex post-form">
+<form #postCreationForm="ngForm" (ngSubmit)="onSubmit()" class="container-flex post-form">
     <label for="title">Title</label>
-    <input id="title" type="text">
+    <input id="title" type="text" name="title"
+        required [(ngModel)]="postFormSubmission.title">
     <label for="summary">Summary</label>
-    <textarea id="summary" placeholder="Add your summary here"></textarea>
+    <textarea id="summary" placeholder="Add your summary here" name="summary"
+        required [(ngModel)]="postFormSubmission.summary"></textarea>
     <label for="content">Content</label>
-    <textarea id="content" placeholder="Add your content here"></textarea>
-    <button>Post!</button>
+    <textarea id="content" placeholder="Add your content here" name="content"
+        required [(ngModel)]="postFormSubmission.content"></textarea>
+    <button type="submit">Post!</button>
 </form>
