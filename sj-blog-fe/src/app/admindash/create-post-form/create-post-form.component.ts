@@ -14,7 +14,6 @@ export class CreatePostFormComponent {
 
   postFormSubmission: PostFormSubmissioDto = {
     title: "", 
-    summary: "", 
     content: ""
   }
 

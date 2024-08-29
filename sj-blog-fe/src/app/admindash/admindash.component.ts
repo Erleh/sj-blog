@@ -17,7 +17,6 @@ export class AdmindashComponent {
 
   handlePostSubmission(formSubmission: PostFormSubmissioDto) {
     console.log(formSubmission.title);
-    console.log(formSubmission.summary);
     console.log(formSubmission.content);
     this.postService.createNewPost(formSubmission);
   }

@@ -1,25 +1,31 @@
 package com.spicejack.sj.controllers;
 
 import com.spicejack.sj.general.dto.PostFormSubmissionDto;
+import com.spicejack.sj.services.PostService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.server.resource.introspection.OAuth2IntrospectionAuthenticatedPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.logging.Logger;
-
 @RestController
 public class PostController {
-    Logger logger = Logger.getLogger(PostController.class.toString());
+    private final PostService postService;
+
+    public PostController(
+            PostService postService
+    ) {
+        this.postService = postService;
+    }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/api/create_post")
     void createPost(
-            @RequestBody PostFormSubmissionDto postSubmission
+            @RequestBody PostFormSubmissionDto postSubmission,
+            @AuthenticationPrincipal OAuth2IntrospectionAuthenticatedPrincipal principal
     ) {
-        logger.info("Post Received");
-        logger.info(postSubmission.getTitle());
-        logger.info(postSubmission.getSummary());
-        logger.info(postSubmission.getContent());
+        // note: user email is being used as our principal name
+        this.postService.createPost(postSubmission.getTitle(), postSubmission.getContent(), principal.getName());
     }
 }
