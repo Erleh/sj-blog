@@ -1,8 +1,11 @@
 package com.spicejack.sj.services;
 
+import com.spicejack.sj.general.dto.PostListingDto;
 import com.spicejack.sj.general.dto.UserDto;
 import com.spicejack.sj.repositories.PostRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PostService {
@@ -17,9 +20,14 @@ public class PostService {
         this.userService = userService;
     }
 
+    public List<PostListingDto> getPostList(int limit, int offset) {
+        return this.postRepository.getPostList(limit, offset);
+    }
+
     public void createPost(
             String title,
             String content,
+            String summary,
             String email
     ) {
         // Retrieve user data using attached email
@@ -30,6 +38,6 @@ public class PostService {
         String username = user.getUsername();
 
         // Update database
-        this.postRepository.createNewPost(userId, title, content, username);
+        this.postRepository.createNewPost(userId, title, content, summary, username);
     }
 }

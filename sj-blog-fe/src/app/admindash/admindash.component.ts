@@ -11,13 +11,27 @@ import { PostService } from '../common/services/post.service';
   styleUrl: './admindash.component.css'
 })
 export class AdmindashComponent {
+  summarySize = 300;
+
   constructor(
     private postService: PostService
   ) {}
 
   handlePostSubmission(formSubmission: PostFormSubmissioDto) {
+    formSubmission.summary = this.extractSummaryBlurb(formSubmission.content, this.summarySize);
+
     console.log(formSubmission.title);
     console.log(formSubmission.content);
+    console.log(formSubmission.summary);
+
     this.postService.createNewPost(formSubmission);
+  }
+
+  extractSummaryBlurb(content: String, length: number) {
+    if (content.length < length) {
+      return content.substring(0);
+    }
+
+    return content.substring(0, length);
   }
 }
