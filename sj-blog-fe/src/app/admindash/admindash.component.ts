@@ -20,10 +20,6 @@ export class AdmindashComponent {
   handlePostSubmission(formSubmission: PostFormSubmissioDto) {
     formSubmission.summary = this.extractSummaryBlurb(formSubmission.content, this.summarySize);
 
-    console.log(formSubmission.title);
-    console.log(formSubmission.content);
-    console.log(formSubmission.summary);
-
     this.postService.createNewPost(formSubmission);
   }
 

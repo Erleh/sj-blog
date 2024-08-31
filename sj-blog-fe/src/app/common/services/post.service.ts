@@ -9,7 +9,12 @@ export class PostService {
 
   constructor(
     private postControllerProxy: PostControllerProxyService
-  ) { }
+  ) {}
+
+  // Load requested page of posts
+  getPostPage(page: number) {
+    return this.postControllerProxy.getPostPage(page);
+  }
 
   createNewPost(postSubmissionForm: PostFormSubmissioDto) {
     this.postControllerProxy.createNewPost(postSubmissionForm).subscribe();

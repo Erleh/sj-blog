@@ -9,7 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface PostRepository extends CrudRepository<PostDto, Long> {
-    @Query("SELECT (title, summary, authorUsername, creationDate) FROM posts ORDER BY creationDate DESC LIMIT :limit OFFSET :offset")
+    @Query("SELECT title, summary, authorUsername, creationDate FROM posts ORDER BY creationDate DESC LIMIT :limit OFFSET :offset")
     List<PostListingDto> getPostList(int limit, int offset);
 
     @Modifying

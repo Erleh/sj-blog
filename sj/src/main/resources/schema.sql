@@ -8,12 +8,12 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS roles (
     id      INTEGER AUTO_INCREMENT      PRIMARY KEY,
-    name    VARCHAR(20)
+    name    VARCHAR(20)                 NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS permissions (
     id      INTEGER AUTO_INCREMENT      PRIMARY KEY,
-    name    VARCHAR(20)
+    name    VARCHAR(20)                 NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS posts (

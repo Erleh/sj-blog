@@ -6,12 +6,12 @@ import com.spicejack.sj.services.PostService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.server.resource.introspection.OAuth2IntrospectionAuthenticatedPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PostController {
@@ -23,12 +23,11 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/public/get_posts")
+    @PostMapping("/public/get_posts")
     List<PostListingDto> getPosts(
-            @RequestBody int limit,
-            @RequestBody int offset
+            @RequestBody Map<String, Integer> pageData
     ) {
-        return this.postService.getPostList(limit, offset);
+        return this.postService.getPostList(pageData.get("limit"), pageData.get("offset"));
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

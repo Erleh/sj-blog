@@ -7,14 +7,23 @@ import { PostFormSubmissioDto } from '../dtos/PostSubmissionFormDto';
   providedIn: 'root'
 })
 export class PostControllerProxyService {
+  postLimit = 7;
 
   constructor(
     private httpClient : HttpClient
   ) { }
 
+  getPostPage(page: number) {
+    return this.httpClient.post(
+      `${environment.apiUrl}/public/get_posts`,
+      {
+        limit: this.postLimit,
+        offset: this.postLimit * (page - 1)
+      }
+    )
+  }
+
   createNewPost(postSubmission: PostFormSubmissioDto) {
-    console.log("Attempting to create post");
-    
     return this.httpClient.post(
       `${environment.apiUrl}/api/create_post`,
       postSubmission
