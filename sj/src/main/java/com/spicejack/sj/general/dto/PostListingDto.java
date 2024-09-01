@@ -11,18 +11,6 @@ public class PostListingDto {
 
     public PostListingDto(){}
 
-    public void setCreationDate(Timestamp creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public void setAuthorUsername(String authorUsername) {
-        this.authorUsername = authorUsername;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -31,16 +19,16 @@ public class PostListingDto {
         this.title = title;
     }
 
-    public Timestamp getCreationDate() {
-        return creationDate;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
-    public String getAuthorUsername() {
-        return authorUsername;
+    public void setAuthorUsername(String author_username) {
+        this.authorUsername = author_username;
     }
 
-    public String getSummary() {
-        return summary;
+    public void setCreationDate(Timestamp creation_date) {
+        this.creationDate = creation_date;
     }
 
     public long getId() {
@@ -49,5 +37,17 @@ public class PostListingDto {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getAuthorUsername() {
+        return authorUsername;
+    }
+
+    public Timestamp getCreationDate() {
+        return creationDate;
     }
 }

@@ -27,7 +27,13 @@ public class PostController {
     List<PostListingDto> getPosts(
             @RequestBody Map<String, Integer> pageData
     ) {
-        return this.postService.getPostList(pageData.get("limit"), pageData.get("offset"));
+        try {
+            return this.postService.getPostList(pageData.get("limit"), pageData.get("offset"));
+        }
+        // In the case that there is no data to retrieve return null
+        catch (Exception e) {
+            return null;
+        }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { PostListingDto } from '../../common/dtos/PostListingDto';
 
 @Component({
   selector: 'app-postlisting',
@@ -8,6 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './postlisting.component.css'
 })
 export class PostlistingComponent {
+  @Input(
+    {
+      required: true
+    }
+  ) postData!: PostListingDto;
   // Accept as input, the data needed to display a post in the post list
   // Title
   // Summary

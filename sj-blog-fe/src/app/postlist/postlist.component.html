@@ -1,1 +1,3 @@
-<p>postlist works!</p>
+@for (post of postList; track post.id) {
+    <app-postlisting [postData]="post"></app-postlisting>
+}

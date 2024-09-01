@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { PostFormSubmissioDto } from '../dtos/PostSubmissionFormDto';
+import { Observable } from 'rxjs';
+import { PostListingDto } from '../dtos/PostListingDto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,8 @@ export class PostControllerProxyService {
     private httpClient : HttpClient
   ) { }
 
-  getPostPage(page: number) {
-    return this.httpClient.post(
+  getPostPage(page: number): Observable<PostListingDto[]> {
+    return this.httpClient.post<PostListingDto[]>(
       `${environment.apiUrl}/public/get_posts`,
       {
         limit: this.postLimit,

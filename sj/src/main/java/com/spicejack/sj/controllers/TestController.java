@@ -1,5 +1,6 @@
 package com.spicejack.sj.controllers;
 
+import com.spicejack.sj.services.PostService;
 import com.spicejack.sj.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,6 +9,7 @@ import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 
@@ -15,9 +17,14 @@ import java.util.logging.Logger;
 public class TestController {
     Logger logger = Logger.getLogger(TestController.class.toString());
     private final UserService userService;
+    private final PostService postService;
 
-    public TestController(UserService userService){
+    public TestController(
+            UserService userService,
+            PostService postService
+    ){
         this.userService = userService;
+        this.postService = postService;
     }
 
     @GetMapping("/public/test/get_hello")
