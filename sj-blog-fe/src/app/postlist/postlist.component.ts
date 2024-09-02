@@ -16,6 +16,10 @@ export class PostlistComponent {
   constructor(
     private postService: PostService
   ) {
+    // If postList length is larger than the page limit, add buttons to turn the page forward
+    //     potentially keep a way to note the current page
+    //        this can be done with router links, and the opened
+    //        page of a post can also be one
     postService.getPostPage(1).subscribe(res => {
       this.postList = res;
       console.log(this.postList);

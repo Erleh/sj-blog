@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PostListingDto } from '../../common/dtos/PostListingDto';
 
 @Component({
@@ -8,14 +8,24 @@ import { PostListingDto } from '../../common/dtos/PostListingDto';
   templateUrl: './postlisting.component.html',
   styleUrl: './postlisting.component.css'
 })
-export class PostlistingComponent {
+export class PostlistingComponent implements OnInit{
   @Input(
     {
       required: true
     }
   ) postData!: PostListingDto;
-  // Accept as input, the data needed to display a post in the post list
-  // Title
-  // Summary
-  // Author, Date made
+
+  @Output() onClicked = new EventEmitter();
+
+  date: String = "";
+
+  ngOnInit(): void {
+    let dateString = new Date(this.postData.creationDate);
+    this.date = dateString.toLocaleDateString();
+  }
+
+  clickHandler() {
+    console.log("clicked " + this.postData.id);
+    this.onClicked.emit(this.postData.id);
+  }
 }
