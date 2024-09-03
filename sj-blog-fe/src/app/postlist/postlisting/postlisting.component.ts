@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PostListingDto } from '../../common/dtos/PostListingDto';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-postlisting',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './postlisting.component.html',
   styleUrl: './postlisting.component.css'
 })
