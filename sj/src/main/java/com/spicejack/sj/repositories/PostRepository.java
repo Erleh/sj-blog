@@ -12,6 +12,9 @@ public interface PostRepository extends CrudRepository<PostDto, Long> {
     @Query("SELECT id, title, summary, author_username, creation_date FROM posts ORDER BY creation_date DESC LIMIT :limit OFFSET :offset")
     List<PostListingDto> getPostList(int limit, int offset);
 
+    @Query("SELECT id, title, content, author_username, creation_date FROM posts WHERE id = :id")
+    PostDto getPost(long id);
+
     @Modifying
     @Query("INSERT INTO posts (id, user_id, title, content, summary, author_username, creation_date) VALUES (DEFAULT, :userid, :title, :content, :summary, :authorUsername, DEFAULT)")
     void createNewPost(long userid, String title, String content, String summary, String authorUsername);

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostService } from '../common/services/post.service';
 import { PostListingDto } from '../common/dtos/PostListingDto';
 import { PostlistingComponent } from "./postlisting/postlisting.component";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-postlist',
@@ -10,23 +11,41 @@ import { PostlistingComponent } from "./postlisting/postlisting.component";
   templateUrl: './postlist.component.html',
   styleUrl: './postlist.component.css'
 })
-export class PostlistComponent {
+export class PostlistComponent implements OnInit{
   postList: PostListingDto[] = [];
+  pageNumber: number = 1;
 
   constructor(
+    private route: ActivatedRoute,
     private postService: PostService
-  ) {
-    // If postList length is larger than the page limit, add buttons to turn the page forward
-    //     potentially keep a way to note the current page
-    //        this can be done with router links, and the opened
-    //        page of a post can also be one
-    postService.getPostPage(1).subscribe(res => {
+  ) {}
+
+  ngOnInit(): void {
+    let pageNumberParam= this.route.snapshot.paramMap.get('page_number');
+
+    if (pageNumberParam) {
+      this.pageNumber = parseInt(pageNumberParam);
+    }
+
+    this.postService.getPostListings(this.pageNumber).subscribe(res => {
       this.postList = res;
       console.log(this.postList);
     });
   }
 
-  loadPostListing(page: number) {
-    this.postService.getPostPage(page);
+  loadPostListing() {
+    this.postService.getPostListings(this.pageNumber);
+  }
+
+  handleNextPage() {
+    if (this.pageNumber > 1) {
+      this.pageNumber--;
+    }
+    this.loadPostListing();
+  }
+
+  handlePrevPage() {
+    this.pageNumber++;
+    this.loadPostListing();
   }
 }

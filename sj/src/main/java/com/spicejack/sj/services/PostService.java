@@ -1,5 +1,6 @@
 package com.spicejack.sj.services;
 
+import com.spicejack.sj.general.dto.PostDto;
 import com.spicejack.sj.general.dto.PostListingDto;
 import com.spicejack.sj.general.dto.UserDto;
 import com.spicejack.sj.repositories.PostRepository;
@@ -22,6 +23,10 @@ public class PostService {
 
     public List<PostListingDto> getPostList(int limit, int offset) {
         return this.postRepository.getPostList(limit, offset);
+    }
+
+    public PostDto getPost(long id) {
+        return this.postRepository.getPost(id);
     }
 
     public void createPost(

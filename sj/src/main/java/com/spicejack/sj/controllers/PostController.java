@@ -1,5 +1,6 @@
 package com.spicejack.sj.controllers;
 
+import com.spicejack.sj.general.dto.PostDto;
 import com.spicejack.sj.general.dto.PostFormSubmissionDto;
 import com.spicejack.sj.general.dto.PostListingDto;
 import com.spicejack.sj.services.PostService;
@@ -23,7 +24,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/public/get_posts")
+    @PostMapping("/public/get_post_listings")
     List<PostListingDto> getPosts(
             @RequestBody Map<String, Integer> pageData
     ) {
@@ -34,6 +35,13 @@ public class PostController {
         catch (Exception e) {
             return null;
         }
+    }
+
+    @PostMapping("/public/get_post")
+    PostDto getPost(
+            @RequestBody long id
+    ) {
+        return this.postService.getPost(id);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

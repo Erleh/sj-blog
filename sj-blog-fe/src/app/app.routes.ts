@@ -7,7 +7,7 @@ import { UnauthorizedComponent } from './errors/unauthorized/unauthorized.compon
 import { CanShowCreateAccountService } from './common/interceptors/routeGuard/can-show-create-account.service';
 import { CanAdminAccessService } from './common/interceptors/routeGuard/can-admin-access.service';
 import { AdmindashComponent } from './admindash/admindash.component';
-import { PostComponent } from './postlist/post/post.component';
+import { PostComponent } from './post/post.component';
 
 export const routes: Routes = [
     {
@@ -39,7 +39,7 @@ export const routes: Routes = [
         component: UnauthorizedComponent
     },
     {
-        path: '/:page_number',
+        path: ':page_number',
         component: PostlistComponent
     },
     {
