@@ -3,6 +3,7 @@ import { PostService } from '../common/services/post.service';
 import { PostListingDto } from '../common/dtos/PostListingDto';
 import { PostlistingComponent } from "./postlisting/postlisting.component";
 import { ActivatedRoute } from '@angular/router';
+import { CsrfService } from '../common/services/csrf.service';
 
 @Component({
   selector: 'app-postlist',
@@ -13,11 +14,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostlistComponent implements OnInit{
   postList: PostListingDto[] = [];
+  hasNextPage: boolean = false;
+  hasPreviousPage: boolean = false;
   pageNumber: number = 1;
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private csrfServuce: CsrfService
   ) {}
 
   ngOnInit(): void {
@@ -27,14 +31,23 @@ export class PostlistComponent implements OnInit{
       this.pageNumber = parseInt(pageNumberParam);
     }
 
-    this.postService.getPostListings(this.pageNumber).subscribe(res => {
-      this.postList = res;
-      console.log(this.postList);
+    this.csrfServuce.getCsrf().subscribe(() => {
+      this.loadPostListing();
     });
   }
 
   loadPostListing() {
-    this.postService.getPostListings(this.pageNumber);
+    this.postService.getPostListings(this.pageNumber).subscribe(res => {
+      console.log(res);
+
+      this.postList = res.postListings;
+      this.hasNextPage = res.hasNext;
+      this.hasPreviousPage = res.hasPrevious;
+
+      console.log(this.postList);
+      console.log(this.hasNextPage);
+      console.log(this.hasPreviousPage);
+    });
   }
 
   handleNextPage() {

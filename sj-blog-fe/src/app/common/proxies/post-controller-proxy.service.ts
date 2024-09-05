@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { PostFormSubmissioDto } from '../dtos/PostSubmissionFormDto';
 import { Observable } from 'rxjs';
-import { PostListingDto } from '../dtos/PostListingDto';
 import { PostDto } from '../dtos/PostDto';
+import { PostListingPageDto } from '../dtos/PostListingPageDto';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,12 @@ export class PostControllerProxyService {
     private httpClient : HttpClient
   ) { }
 
-  getPostListings(page: number): Observable<PostListingDto[]> {
-    return this.httpClient.post<PostListingDto[]>(
+  getPostListings(page: number): Observable<PostListingPageDto> {
+    return this.httpClient.post<PostListingPageDto>(
       `${environment.apiUrl}/public/get_post_listings`,
       {
         limit: this.postLimit,
-        offset: this.postLimit * (page - 1)
+        offset: page
       }
     );
   }

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { PostControllerProxyService } from '../proxies/post-controller-proxy.service';
 import { PostFormSubmissioDto } from '../dtos/PostSubmissionFormDto';
 import { Observable } from 'rxjs';
-import { PostListingDto } from '../dtos/PostListingDto';
 import { PostDto } from '../dtos/PostDto';
+import { PostListingPageDto } from '../dtos/PostListingPageDto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +15,11 @@ export class PostService {
   ) {}
 
   // Load requested page of posts
-  getPostListings(page: number): Observable<PostListingDto[]>{
+  getPostListings(page: number): Observable<PostListingPageDto>{
     return this.postControllerProxy.getPostListings(page);
   }
 
+  // Get post by post id
   getPostPage(id: number): Observable<PostDto>{
     return this.postControllerProxy.getPostPage(id);
   }

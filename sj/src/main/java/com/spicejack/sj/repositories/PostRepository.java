@@ -9,6 +9,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface PostRepository extends CrudRepository<PostDto, Long> {
+    @Query("SELECT COUNT(*) FROM posts")
+    long getPostCount();
+
     @Query("SELECT id, title, summary, author_username, creation_date FROM posts ORDER BY creation_date DESC LIMIT :limit OFFSET :offset")
     List<PostListingDto> getPostList(int limit, int offset);
 

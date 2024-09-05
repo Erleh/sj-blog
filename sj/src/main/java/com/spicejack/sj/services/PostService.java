@@ -21,6 +21,10 @@ public class PostService {
         this.userService = userService;
     }
 
+    public long getPostCount() {
+        return this.postRepository.getPostCount();
+    }
+
     public List<PostListingDto> getPostList(int limit, int offset) {
         return this.postRepository.getPostList(limit, offset);
     }
