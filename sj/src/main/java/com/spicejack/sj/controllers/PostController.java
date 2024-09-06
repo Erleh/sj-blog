@@ -2,7 +2,6 @@ package com.spicejack.sj.controllers;
 
 import com.spicejack.sj.general.dto.PostDto;
 import com.spicejack.sj.general.dto.PostFormSubmissionDto;
-import com.spicejack.sj.general.dto.PostListingDto;
 import com.spicejack.sj.general.dto.PostListingPaginationDto;
 import com.spicejack.sj.services.PostService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -42,7 +40,7 @@ public class PostController {
             int offset = listLimit * (pageNum - 1);
 
             // If there should be a next page
-            if (offset < postCount) {
+            if (offset + listLimit < postCount) {
                 page.setHasNext(true);
             }
 
