@@ -1,7 +1,7 @@
 export interface PostListingDto {
     id: number,
-    title: String,
-    summary: String,
-    authorUsername: String,
+    title: string,
+    summary: string,
+    authorUsername: string,
     creationDate: Date
 }

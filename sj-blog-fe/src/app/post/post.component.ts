@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../common/services/post.service';
 import { PostDto } from '../common/dtos/PostDto';
+import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [],
+  imports: [MarkdownComponent],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
