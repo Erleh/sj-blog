@@ -76,7 +76,6 @@ public class PostController {
         this.postService.createPost(
                 postSubmission.getTitle(),
                 postSubmission.getContent(),
-                postSubmission.getSummary(),
                 principal.getName()
         );
     }

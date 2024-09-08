@@ -36,7 +36,6 @@ public class PostService {
     public void createPost(
             String title,
             String content,
-            String summary,
             String email
     ) {
         // Retrieve user data using attached email
@@ -47,6 +46,6 @@ public class PostService {
         String username = user.getUsername();
 
         // Update database
-        this.postRepository.createNewPost(userId, title, content, summary, username);
+        this.postRepository.createNewPost(userId, title, content, username);
     }
 }

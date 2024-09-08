@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 public class PostListingDto {
     long id;
     String title;
-    String summary;
     String authorUsername;
     Timestamp creationDate;
 
@@ -17,10 +16,6 @@ public class PostListingDto {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
     }
 
     public void setAuthorUsername(String author_username) {
@@ -37,10 +32,6 @@ public class PostListingDto {
 
     public String getTitle() {
         return title;
-    }
-
-    public String getSummary() {
-        return summary;
     }
 
     public String getAuthorUsername() {
