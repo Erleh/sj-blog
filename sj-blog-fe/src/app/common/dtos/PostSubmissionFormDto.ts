@@ -1,5 +1,4 @@
-export interface PostFormSubmissioDto {
+export interface PostSubmissionFormDto {
     title: string,
-    content: string,
-    summary: string
+    content: string
 }

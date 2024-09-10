@@ -23,6 +23,10 @@ public interface PostRepository extends CrudRepository<PostDto, Long> {
     void createNewPost(long userid, String title, String content, String authorUsername);
 
     @Modifying
+    @Query("UPDATE posts SET user_id = :userid, title = :title, content = :content, author_username = :authorUsername WHERE id = :postId")
+    void updatePost(long postId, long userid, String title, String content, String authorUsername);
+
+    @Modifying
     @Query("DELETE FROM posts WHERE id = :postId")
     void deletePost(long postId);
 }

@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
-import { PostFormSubmissioDto } from '../dtos/PostSubmissionFormDto';
+import { PostSubmissionFormDto } from '../dtos/PostSubmissionFormDto';
 import { Observable } from 'rxjs';
 import { PostDto } from '../dtos/PostDto';
 import { PostListingPageDto } from '../dtos/PostListingPageDto';
+import { PostModificationFormDto } from '../dtos/PostModificationDto';
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +34,17 @@ export class PostControllerProxyService {
     );
   }
 
-  createNewPost(postSubmission: PostFormSubmissioDto) {
+  createNewPost(postSubmission: PostSubmissionFormDto) {
     return this.httpClient.post(
       `${environment.apiUrl}/api/create_post`,
       postSubmission
+    );
+  }
+
+  updatePost(postModificationForm: PostModificationFormDto) {
+    return this.httpClient.post(
+      `${environment.apiUrl}/api/update_post`,
+      postModificationForm
     );
   }
 }

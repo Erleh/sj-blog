@@ -1,33 +1,42 @@
 import { Component } from '@angular/core';
 import { CreatePostFormComponent } from "./create-post-form/create-post-form.component";
-import { PostFormSubmissioDto } from '../common/dtos/PostSubmissionFormDto';
+import { PostSubmissionFormDto } from '../common/dtos/PostSubmissionFormDto';
 import { PostService } from '../common/services/post.service';
+import { ModificationPostlistComponent } from "./modification-postlist/modification-postlist.component";
+import { PostListingDto } from '../common/dtos/PostListingDto';
+import { PostModificationFormDto } from '../common/dtos/PostModificationDto';
 
 @Component({
   selector: 'app-admindash',
   standalone: true,
-  imports: [CreatePostFormComponent],
+  imports: [CreatePostFormComponent, ModificationPostlistComponent],
   templateUrl: './admindash.component.html',
   styleUrl: './admindash.component.css'
 })
 export class AdmindashComponent {
-  summarySize = 300;
+  isModifying: boolean = false;
+  
+  modId!: number;
+  modTitle: string = "";
+  modContent: string = "";
 
   constructor(
     private postService: PostService
   ) {}
 
-  handlePostSubmission(formSubmission: PostFormSubmissioDto) {
-    formSubmission.summary = this.extractSummaryBlurb(formSubmission.content, this.summarySize);
-
+  handlePostSubmission(formSubmission: PostSubmissionFormDto) {
     this.postService.createNewPost(formSubmission);
   }
 
-  extractSummaryBlurb(content: String, length: number) {
-    if (content.length < length) {
-      return content.substring(0);
-    }
+  handlePostModification(modificationSubmission: PostModificationFormDto) {
+    this.postService.updatePostPage(modificationSubmission);
+  }
 
-    return content.substring(0, length);
+  handleModifySelection(postSelection: PostListingDto) {
+    this.postService.getPostPage(postSelection.id).subscribe(post => {
+      this.modId = post.id;
+      this.modTitle = post.title;
+      this.modContent = post.content;
+    })
   }
 }

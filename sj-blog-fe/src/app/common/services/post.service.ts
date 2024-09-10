@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { PostControllerProxyService } from '../proxies/post-controller-proxy.service';
-import { PostFormSubmissioDto } from '../dtos/PostSubmissionFormDto';
+import { PostSubmissionFormDto } from '../dtos/PostSubmissionFormDto';
 import { Observable } from 'rxjs';
 import { PostDto } from '../dtos/PostDto';
 import { PostListingPageDto } from '../dtos/PostListingPageDto';
+import { PostModificationFormDto } from '../dtos/PostModificationDto';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,11 @@ export class PostService {
     return this.postControllerProxy.getPostPage(id);
   }
 
-  createNewPost(postSubmissionForm: PostFormSubmissioDto) {
+  updatePostPage(postModificationForm: PostModificationFormDto) {
+    this.postControllerProxy.updatePost(postModificationForm).subscribe();
+  }
+
+  createNewPost(postSubmissionForm: PostSubmissionFormDto) {
     this.postControllerProxy.createNewPost(postSubmissionForm).subscribe();
   }
 }

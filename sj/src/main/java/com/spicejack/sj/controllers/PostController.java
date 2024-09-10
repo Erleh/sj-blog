@@ -3,6 +3,7 @@ package com.spicejack.sj.controllers;
 import com.spicejack.sj.general.dto.PostDto;
 import com.spicejack.sj.general.dto.PostFormSubmissionDto;
 import com.spicejack.sj.general.dto.PostListingPaginationDto;
+import com.spicejack.sj.general.dto.PostUpdateFormDto;
 import com.spicejack.sj.services.PostService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -76,6 +77,20 @@ public class PostController {
         this.postService.createPost(
                 postSubmission.getTitle(),
                 postSubmission.getContent(),
+                principal.getName()
+        );
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/api/update_post")
+    void updatePost(
+            @RequestBody PostUpdateFormDto updateSubmission,
+            @AuthenticationPrincipal OAuth2IntrospectionAuthenticatedPrincipal principal
+    ) {
+        this.postService.updatePost(
+                updateSubmission.getId(),
+                updateSubmission.getTitle(),
+                updateSubmission.getContent(),
                 principal.getName()
         );
     }

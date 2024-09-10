@@ -48,4 +48,21 @@ public class PostService {
         // Update database
         this.postRepository.createNewPost(userId, title, content, username);
     }
+
+    public void updatePost(
+            long postId,
+            String title,
+            String content,
+            String email
+    ) {
+        // Retrieve user data using attached email
+        UserDto user = userService.getUserByEmail(email);
+
+        // Retrieve related data for saving a new post
+        long userId = user.getId();
+        String username = user.getUsername();
+
+        // Update database
+        this.postRepository.updatePost(postId, userId, title, content, username);
+    }
 }

@@ -1,4 +1,9 @@
 .post-form {
+    margin: 1rem;
     flex-direction: column;
-    max-width: 50rem;
+    min-width: 50%;
+}
+
+.post-form #content {
+    min-height: 10rem;
 }

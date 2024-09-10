@@ -1,0 +1,11 @@
+<div>
+    <ul>
+        @for(post of postList; track post.id) {
+            <app-postref
+                [postData]="post" 
+                [isSelected]="post === selectedPost"
+                (onSelect)="onSelection(post)"
+            ></app-postref>
+        }
+    </ul>
+</div>

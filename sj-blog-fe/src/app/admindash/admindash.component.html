@@ -1,1 +1,20 @@
-<app-create-post-form (postFormSubmissionEvent)="handlePostSubmission($event)"></app-create-post-form>
+<app-create-post-form 
+    (postFormSubmissionEvent)="handlePostSubmission($event)"
+    (postFormModificationEvent)="handlePostModification($event)"
+    [modId]="modId"
+    [modTitle]="modTitle"
+    [modContent]="modContent"
+    [isModifying]="isModifying"
+></app-create-post-form>
+<label for="modify">Modify Posts</label>
+<input 
+    type="checkbox" 
+    id="modify"
+    [checked]="isModifying"
+    (change)="isModifying = !isModifying"
+>
+@if (isModifying) {
+    <app-modification-postlist
+        (selectedPostEvent)="handleModifySelection($event)"
+    ></app-modification-postlist>
+}

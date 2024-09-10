@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PostFormSubmissioDto } from '../../common/dtos/PostSubmissionFormDto';
+import { PostSubmissionFormDto } from '../../common/dtos/PostSubmissionFormDto';
+import { PostModificationFormDto } from '../../common/dtos/PostModificationDto';
 
 @Component({
   selector: 'app-create-post-form',
@@ -9,16 +10,36 @@ import { PostFormSubmissioDto } from '../../common/dtos/PostSubmissionFormDto';
   templateUrl: './create-post-form.component.html',
   styleUrl: './create-post-form.component.css'
 })
-export class CreatePostFormComponent {
+export class CreatePostFormComponent implements OnChanges{
+  @Input() modTitle!: string;
+  @Input() modContent!: string;
+  @Input() modId!: number;
+  @Input() isModifying: boolean = false;
+  
   @Output() postFormSubmissionEvent = new EventEmitter();
+  @Output() postFormModificationEvent = new EventEmitter();
+  
+  postSubmissionForm: PostSubmissionFormDto = {
+    title: this.modTitle, 
+    content: this.modContent
+  }
 
-  postFormSubmission: PostFormSubmissioDto = {
-    title: "", 
-    content: "",
-    summary: ""
+  ngOnChanges(changes: SimpleChanges): void {
+    this.postSubmissionForm.title = this.modTitle;
+    this.postSubmissionForm.content = this.modContent;
   }
 
   onSubmit() {
-    this.postFormSubmissionEvent.emit(this.postFormSubmission);
+    if (!this.isModifying) {
+      this.postFormSubmissionEvent.emit(this.postSubmissionForm);
+    } else {
+      let modificationForm: PostModificationFormDto = {
+        id: this.modId,
+        title: this.postSubmissionForm.title,
+        content: this.postSubmissionForm.content
+      };
+      console.log(modificationForm);
+      this.postFormModificationEvent.emit(modificationForm);
+    }
   }
 }
