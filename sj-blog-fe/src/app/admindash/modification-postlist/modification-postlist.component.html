@@ -5,6 +5,7 @@
                 [postData]="post" 
                 [isSelected]="post === selectedPost"
                 (onSelect)="onSelection(post)"
+                (onDelete)="onDeletion(post)"
             ></app-postref>
         }
     </ul>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { PostListingDto } from '../../common/dtos/PostListingDto';
 import { PostrefComponent } from "./postref/postref.component";
 import { CsrfService } from '../../common/services/csrf.service';
@@ -13,6 +13,7 @@ import { PostService } from '../../common/services/post.service';
 })
 export class ModificationPostlistComponent implements OnInit{
   @Output() selectedPostEvent = new EventEmitter();
+  @Output() deletePostEvent = new EventEmitter();
 
   // Load list of postListings
   postList: PostListingDto[] = [];
@@ -52,5 +53,17 @@ export class ModificationPostlistComponent implements OnInit{
     this.selectedPost = selected;
 
     this.selectedPostEvent.emit(selected);
+  }
+
+  onDeletion(selected: PostListingDto) {
+    this.deletePostEvent.emit(selected);
+    this.loadPostListing();
+
+    this.postList.filter(post => {
+      if (post.id !== selected.id) {
+        return post;
+      }
+      return;
+    });
   }
 }

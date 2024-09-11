@@ -65,4 +65,11 @@ public class PostService {
         // Update database
         this.postRepository.updatePost(postId, userId, title, content, username);
     }
+
+    public void deletePost(
+            long postId
+    ) {
+        // Delete post of given id
+        this.postRepository.deletePost(postId);
+    }
 }

@@ -94,4 +94,12 @@ public class PostController {
                 principal.getName()
         );
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/api/delete_post")
+    void deletePost(
+            @RequestBody long postId
+    ) {
+        this.postService.deletePost(postId);
+    }
 }

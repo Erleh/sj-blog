@@ -1,5 +1,19 @@
-<li (click)="handleClick()" [class.selected]="isSelected">
+<li (click)="handleSelection()" [class.selected]="isSelected">
     <p>{{postData.id}}</p>
     <p>{{postData.title}}</p>
     <p>{{date}}</p>
+    @if (!shouldConfirmDeletion) {
+        <div (click)="handleConfirmDeletion()">
+            <p>Delete</p>
+        </div>
+    } @else {
+        <ul>
+            <li>
+                <p (click)="confirmDeletion()">Yes</p>
+            </li>
+            <li>
+                <p (click)="cancelDeletion()">No</p>
+            </li>
+        </ul>
+    }
 </li>

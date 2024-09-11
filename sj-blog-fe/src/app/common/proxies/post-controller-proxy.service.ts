@@ -41,6 +41,13 @@ export class PostControllerProxyService {
     );
   }
 
+  deletePost(postId: number) {
+    return this.httpClient.post(
+      `${environment.apiUrl}/api/delete_post`,
+      postId
+    );
+  }
+
   updatePost(postModificationForm: PostModificationFormDto) {
     return this.httpClient.post(
       `${environment.apiUrl}/api/update_post`,

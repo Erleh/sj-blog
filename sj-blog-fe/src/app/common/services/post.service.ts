@@ -32,4 +32,8 @@ export class PostService {
   createNewPost(postSubmissionForm: PostSubmissionFormDto) {
     this.postControllerProxy.createNewPost(postSubmissionForm).subscribe();
   }
+
+  deletePost(postId: number) {
+    this.postControllerProxy.deletePost(postId).subscribe();
+  }
 }

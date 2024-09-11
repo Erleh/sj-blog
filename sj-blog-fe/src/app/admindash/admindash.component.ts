@@ -15,6 +15,8 @@ import { PostModificationFormDto } from '../common/dtos/PostModificationDto';
 })
 export class AdmindashComponent {
   isModifying: boolean = false;
+
+  hasDeleted: boolean = false;
   
   modId!: number;
   modTitle: string = "";
@@ -33,10 +35,21 @@ export class AdmindashComponent {
   }
 
   handleModifySelection(postSelection: PostListingDto) {
+    if (this.hasDeleted) {
+      this.hasDeleted = false;
+      return;
+    }
+
     this.postService.getPostPage(postSelection.id).subscribe(post => {
       this.modId = post.id;
       this.modTitle = post.title;
       this.modContent = post.content;
     })
+  }
+
+  handlePostDeletion(postSelection: PostListingDto) {
+    this.postService.deletePost(postSelection.id);
+
+    this.hasDeleted = true;
   }
 }

@@ -16,5 +16,6 @@
 @if (isModifying) {
     <app-modification-postlist
         (selectedPostEvent)="handleModifySelection($event)"
+        (deletePostEvent)="handlePostDeletion($event)"
     ></app-modification-postlist>
 }
