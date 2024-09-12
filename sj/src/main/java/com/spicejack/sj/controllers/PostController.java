@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 @RestController
 public class PostController {
+    private final Logger logger = Logger.getLogger(PostController.class.toString());
     private final PostService postService;
 
     public PostController(

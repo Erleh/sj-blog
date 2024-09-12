@@ -12,7 +12,7 @@ import { CsrfService } from '../common/services/csrf.service';
   templateUrl: './postlist.component.html',
   styleUrl: './postlist.component.css'
 })
-export class PostlistComponent implements OnInit{
+export class PostlistComponent {
   postList: PostListingDto[] = [];
   hasNextPage: boolean = false;
   hasPreviousPage: boolean = false;
@@ -25,28 +25,28 @@ export class PostlistComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
-    private csrfServuce: CsrfService,
+    private csrfService: CsrfService,
     private activatedRoute: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.activatedRoute.params.subscribe(params => {
       let pageNumberParam= this.route.snapshot.paramMap.get('page_number');
-
+  
       // Ensure there exists a pagenum param
       if (pageNumberParam) {
         this.pageNumber = parseInt(pageNumberParam);
       }
-
+  
       // Update page refs
       if (this.pageNumber > 1) {
         this.prevPageNum = this.pageNumber - 1;
         this.nextPageNum = this.pageNumber + 1;
       }
-  
+
       // Ensure existence of csrf token before request
-      this.csrfServuce.getCsrf().subscribe(() => {
-        this.loadPostListing();
+      this.csrfService.getCsrf().subscribe({
+        next: () => {
+          this.loadPostListing();
+        }
       });
     })
   }
