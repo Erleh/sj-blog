@@ -17,5 +17,12 @@
         name="content"
         required [(ngModel)]="postSubmissionForm.content"
     ></textarea>
+    <label for="img">Listing Img</label>
+    <input
+        type="file"
+        id="postimg"
+        name="img"
+        accept="image/png, image/jpeg"
+    >
     <button type="submit">Post!</button>
 </form>

@@ -9,6 +9,11 @@ import java.util.logging.Logger;
 
 @RestController
 public class CsrfController {
+    private final Logger logger = Logger.getLogger(CsrfController.class.toString());
     @GetMapping("/public/csrf")
-    public void getCsrf() {}
+    public void getCsrf(
+            CsrfToken csrf
+    ) {
+        logger.info(csrf.getToken());
+    }
 }

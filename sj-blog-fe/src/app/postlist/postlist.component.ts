@@ -4,6 +4,7 @@ import { PostListingDto } from '../common/dtos/PostListingDto';
 import { PostlistingComponent } from "./postlisting/postlisting.component";
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CsrfService } from '../common/services/csrf.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-postlist',
@@ -26,7 +27,8 @@ export class PostlistComponent {
     private route: ActivatedRoute,
     private postService: PostService,
     private csrfService: CsrfService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cookie: CookieService
   ) {
     this.activatedRoute.params.subscribe(params => {
       let pageNumberParam= this.route.snapshot.paramMap.get('page_number');
@@ -42,17 +44,21 @@ export class PostlistComponent {
         this.nextPageNum = this.pageNumber + 1;
       }
 
+      console.log(`prior token: ${cookie.get("XSRF-TOKEN")}`);
       // Ensure existence of csrf token before request
       this.csrfService.getCsrf().subscribe({
         next: () => {
           this.loadPostListing();
+        },
+        error: (err) => {
+          console.error("Error fetching CSRF", err);
         }
       });
     })
   }
 
   loadPostListing() {
-    this.postService.getPostListings(this.pageNumber).subscribe(res => {
+    this.postService.getPostListings(this.pageNumber).subscribe((res) => {
       this.postList = res.postListings;
       this.hasNextPage = res.hasNext;
       this.hasPreviousPage = res.hasPrevious;
