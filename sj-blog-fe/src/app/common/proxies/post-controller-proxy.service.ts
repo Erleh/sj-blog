@@ -18,11 +18,13 @@ export class PostControllerProxyService {
   ) { }
 
   getPostListings(page: number): Observable<PostListingPageDto> {
-    return this.httpClient.post<PostListingPageDto>(
+    return this.httpClient.get<PostListingPageDto>(
       `${environment.apiUrl}/public/get_post_listings`,
       {
-        limit: this.postLimit,
-        offset: page
+        params: {
+          pageNumber: page,
+          size: this.postLimit,
+        }
       }
     );
   }

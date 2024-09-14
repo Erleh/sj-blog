@@ -8,9 +8,7 @@ import com.spicejack.sj.services.PostService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.server.resource.introspection.OAuth2IntrospectionAuthenticatedPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.logging.Logger;
@@ -26,9 +24,10 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/public/get_post_listings")
+    @GetMapping("/public/get_post_listings")
     PostListingPaginationDto getPosts(
-            @RequestBody Map<String, Integer> pageData
+            @RequestParam int pageNumber,
+            @RequestParam int size
     ) {
         try {
             PostListingPaginationDto page = new PostListingPaginationDto();
@@ -37,22 +36,19 @@ public class PostController {
 
             long postCount = this.postService.getPostCount();
 
-            int listLimit = pageData.get("limit");
-            int pageNum = pageData.get("offset");
-
-            int offset = listLimit * (pageNum - 1);
+            int offset = size * (pageNumber - 1);
 
             // If there should be a next page
-            if (offset + listLimit < postCount) {
+            if (offset + size < postCount) {
                 page.setHasNext(true);
             }
 
             // If there should be a previous page
-            if (pageNum > 1) {
+            if (pageNumber > 1) {
                 page.setHasPrevious(true);
             }
 
-            page.setPostListings(this.postService.getPostList(listLimit, offset));
+            page.setPostListings(this.postService.getPostList(size, offset));
 
             return page;
         }
