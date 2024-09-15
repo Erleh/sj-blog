@@ -1,7 +1,6 @@
-import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PostListingDto } from '../../common/dtos/PostListingDto';
 import { PostrefComponent } from "./postref/postref.component";
-import { CsrfService } from '../../common/services/csrf.service';
 import { PostService } from '../../common/services/post.service';
 
 @Component({
@@ -30,15 +29,11 @@ export class ModificationPostlistComponent implements OnInit{
   };
 
   constructor (
-    private csrf: CsrfService,
     private postService: PostService
   ) {}
 
   ngOnInit(): void {
-    // Ensure existence of csrf token, then retrieve postlist
-    this.csrf.getCsrf().subscribe(() => {
-      this.loadPostListing();
-    });
+    this.loadPostListing();
   }
 
   loadPostListing() {

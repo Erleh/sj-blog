@@ -22,7 +22,7 @@ export class PostlistingComponent implements OnInit{
 
   ngOnInit(): void {
     let dateString = new Date(this.postData.creationDate);
-    this.date = dateString.toLocaleTimeString();
+    this.date = dateString.toLocaleDateString();
   }
 
   clickHandler() {
