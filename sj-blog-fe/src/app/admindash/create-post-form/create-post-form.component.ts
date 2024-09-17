@@ -30,16 +30,21 @@ export class CreatePostFormComponent implements OnChanges{
   }
 
   onSubmit() {
-    if (!this.isModifying) {
-      this.postFormSubmissionEvent.emit(this.postSubmissionForm);
-    } else {
+    if (this.isModifying) {
+      // Modify an existing post
       let modificationForm: PostModificationFormDto = {
         id: this.modId,
         title: this.postSubmissionForm.title,
         content: this.postSubmissionForm.content
       };
-      console.log(modificationForm);
       this.postFormModificationEvent.emit(modificationForm);
+    } else {
+      // Create a new post
+      this.postFormSubmissionEvent.emit(this.postSubmissionForm);
     }
+
+    // Then clear form
+    this.postSubmissionForm.title = "";
+    this.postSubmissionForm.content = "";
   }
 }

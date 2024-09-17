@@ -9,4 +9,11 @@
             ></app-postref>
         }
     </ul>
+    @if (hasPreviousPage) {
+        <button (click)="onPrevPage()">Prev</button>
+    }
+
+    @if (hasNextPage) {
+        <button (click)="onNextPage()">Next</button>
+    }
 </div>

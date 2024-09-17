@@ -3,10 +3,14 @@
 }
 <div>
     @if (hasPreviousPage) {
-        <a [routerLink]="['', prevPageNum]" (click)="handlePrevPage()">&lt;==</a>
+        <button 
+            [routerLink]="['', prevPageNum]" 
+            (click)="handlePrevPage()">Prev</button>
     }
     <br>
     @if (hasNextPage) {
-        <a [routerLink]="['', nextPageNum]" (click)="handleNextPage()">==&gt;</a>
+        <button 
+            [routerLink]="['', nextPageNum]" 
+            (click)="handleNextPage()">Next</button>
     }
 </div>

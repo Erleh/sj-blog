@@ -6,6 +6,7 @@
     <label for="title">Title</label>
     <input 
         id="title" 
+        placeholder="Add a title here"
         type="text" 
         name="title"
         required [(ngModel)]="postSubmissionForm.title"
@@ -13,16 +14,10 @@
     <label for="content">Content</label>
     <textarea 
         id="content" 
-        placeholder="Add your content here" 
+        placeholder="Add content here" 
         name="content"
         required [(ngModel)]="postSubmissionForm.content"
     ></textarea>
     <label for="img">Listing Img</label>
-    <input
-        type="file"
-        id="postimg"
-        name="img"
-        accept="image/png, image/jpeg"
-    >
     <button type="submit">Post!</button>
 </form>

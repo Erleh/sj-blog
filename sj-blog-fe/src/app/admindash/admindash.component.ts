@@ -5,11 +5,12 @@ import { PostService } from '../common/services/post.service';
 import { ModificationPostlistComponent } from "./modification-postlist/modification-postlist.component";
 import { PostListingDto } from '../common/dtos/PostListingDto';
 import { PostModificationFormDto } from '../common/dtos/PostModificationDto';
+import { ImageManagerComponent } from "./image-manager/image-manager.component";
 
 @Component({
   selector: 'app-admindash',
   standalone: true,
-  imports: [CreatePostFormComponent, ModificationPostlistComponent],
+  imports: [CreatePostFormComponent, ModificationPostlistComponent, ImageManagerComponent],
   templateUrl: './admindash.component.html',
   styleUrl: './admindash.component.css'
 })

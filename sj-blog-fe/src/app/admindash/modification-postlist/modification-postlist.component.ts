@@ -44,6 +44,24 @@ export class ModificationPostlistComponent implements OnInit{
     });
   }
 
+  onNextPage() {
+    if (!this.hasNextPage) {
+      return;
+    }
+
+    this.pageNumber++;
+    this.loadPostListing();
+  }
+
+  onPrevPage() {
+    if (!this.hasPreviousPage) {
+      return;
+    }
+
+    this.pageNumber--;
+    this.loadPostListing();
+  }
+
   onSelection(selected: PostListingDto) {
     this.selectedPost = selected;
 
