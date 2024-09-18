@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,19 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './image-manager.component.css'
 })
 export class ImageManagerComponent {
-  onSubmit() {
+  @Output() uploadImageEvent = new EventEmitter();
 
+  selectedFile: File | null = null;
+
+  onSubmit(): void{
+    this.uploadImageEvent.emit(this.selectedFile);
+  }
+
+  onFileSelect(event: any): void {
+    const file = event.target.files[0];
+
+    if (file) {
+      this.selectedFile = file;
+    }
   }
 }

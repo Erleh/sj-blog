@@ -6,6 +6,7 @@ import { ModificationPostlistComponent } from "./modification-postlist/modificat
 import { PostListingDto } from '../common/dtos/PostListingDto';
 import { PostModificationFormDto } from '../common/dtos/PostModificationDto';
 import { ImageManagerComponent } from "./image-manager/image-manager.component";
+import { ImagesService } from '../common/services/images.service';
 
 @Component({
   selector: 'app-admindash',
@@ -24,7 +25,8 @@ export class AdmindashComponent {
   modContent: string = "";
 
   constructor(
-    private postService: PostService
+    private postService: PostService,
+    private imagesService: ImagesService
   ) {}
 
   handlePostSubmission(formSubmission: PostSubmissionFormDto) {
@@ -52,5 +54,9 @@ export class AdmindashComponent {
     this.postService.deletePost(postSelection.id);
 
     this.hasDeleted = true;
+  }
+
+  handleUploadImage(file: any) {
+    this.imagesService.saveImageFile(file);
   }
 }

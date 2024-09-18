@@ -15,9 +15,11 @@
 >
 @if (isModifying) {
     <app-modification-postlist
-    (selectedPostEvent)="handleModifySelection($event)"
-    (deletePostEvent)="handlePostDeletion($event)"
+        (selectedPostEvent)="handleModifySelection($event)"
+        (deletePostEvent)="handlePostDeletion($event)"
     ></app-modification-postlist>
 }
 <hr>
-<app-image-manager></app-image-manager>
+<app-image-manager
+    (uploadImageEvent)="handleUploadImage($event)"
+></app-image-manager>
