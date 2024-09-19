@@ -14,13 +14,18 @@ export class ImageManagerComponent {
   selectedFile: File | null = null;
 
   onSubmit(): void{
+    console.log("emitting");
     this.uploadImageEvent.emit(this.selectedFile);
   }
 
   onFileSelect(event: any): void {
     const file = event.target.files[0];
 
+    // Issue with filetype being sent,
+    // not a multipart request
+
     if (file) {
+      console.log("File selected")
       this.selectedFile = file;
     }
   }

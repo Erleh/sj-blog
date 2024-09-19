@@ -15,9 +15,11 @@ export class ImageControllerProxyService {
     this.httpClient.post(
       `${environment.apiUrl}/api/upload_image`,
       {
-        file
+        params: {
+          image: file
+        }
       }
-    );
+    ).subscribe();
   }
 
   retrieveImageList() {

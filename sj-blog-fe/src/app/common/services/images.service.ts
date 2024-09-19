@@ -15,6 +15,8 @@ export class ImagesService {
       return;
     }
 
+    console.log("saving image");
+    console.log(file);
     this.imageControllerProxy.saveImage(file);
   }
 }
