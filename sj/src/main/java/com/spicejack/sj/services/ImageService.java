@@ -29,7 +29,7 @@ public class ImageService {
         // Try to save the image file to our file system
         try {
             String fileExtension = getFileExtension(file.getOriginalFilename());
-            String fileName = UUID.randomUUID().toString() + "." + fileExtension;
+            String fileName = UUID.randomUUID() + "." + fileExtension;
             File targetFile = new File(uploadDir + fileName);
 
             // Check for directory

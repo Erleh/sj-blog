@@ -13,12 +13,8 @@ export class ImageControllerProxyService {
 
   saveImage(file: File) {
     this.httpClient.post(
-      `${environment.apiUrl}/api/upload_image`,
-      {
-        params: {
-          image: file
-        }
-      }
+      `${environment.apiUrl}/api/upload_image`, 
+      file
     ).subscribe();
   }
 
