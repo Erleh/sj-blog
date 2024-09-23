@@ -29,33 +29,9 @@ public class PostController {
             @RequestParam int pageNumber,
             @RequestParam int size
     ) {
-        try {
-            PostListingPaginationDto page = new PostListingPaginationDto();
-            page.setHasNext(false);
-            page.setHasPrevious(false);
+        int offset = size * (pageNumber - 1);
 
-            long postCount = this.postService.getPostCount();
-
-            int offset = size * (pageNumber - 1);
-
-            // If there should be a next page
-            if (offset + size < postCount) {
-                page.setHasNext(true);
-            }
-
-            // If there should be a previous page
-            if (pageNumber > 1) {
-                page.setHasPrevious(true);
-            }
-
-            page.setPostListings(this.postService.getPostList(size, offset));
-
-            return page;
-        }
-        // In the case that there is no data to retrieve return null
-        catch (Exception e) {
-            return null;
-        }
+        return this.postService.getPostListPage(size, offset);
     }
 
     @PostMapping("/public/get_post")

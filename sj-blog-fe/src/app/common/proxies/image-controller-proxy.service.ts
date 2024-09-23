@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { environment } from '../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
+import { ImagePathListDto } from '../dtos/ImagePathListDto';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImageControllerProxyService {
+  maxImages:number = 7;
+
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -18,8 +22,16 @@ export class ImageControllerProxyService {
     ).subscribe();
   }
 
-  retrieveImageList() {
-
+  retrieveImageList(page: number): Observable<ImagePathListDto>{
+    return this.httpClient.get<ImagePathListDto>(
+      `${environment.apiUrl}/api/get_image_list`,
+      {
+        params: {
+          page,
+          size: this.maxImages
+        }
+      }
+    );
   }
 
   deleteImage() {

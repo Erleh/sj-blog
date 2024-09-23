@@ -1,16 +1,18 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ImageListComponent } from './image-list/image-list.component';
 
 @Component({
   selector: 'app-image-manager',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ImageListComponent],
   templateUrl: './image-manager.component.html',
   styleUrl: './image-manager.component.css'
 })
 export class ImageManagerComponent {
   @Output() uploadImageEvent = new EventEmitter();
 
+  isRetrievingImage: boolean = false;
   selectedFile: File | null = null;
 
   onSubmit(): void{

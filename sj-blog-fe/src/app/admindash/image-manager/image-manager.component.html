@@ -11,3 +11,14 @@
     >
     <button type="submit">Upload</button>
 </form>
+<hr>
+<label for="retrieveImg">Retrieve Images</label>
+<input 
+    type="checkbox" 
+    id="retrieveImg"
+    [checked]="isRetrievingImage"
+    (change)="isRetrievingImage= !isRetrievingImage"
+>
+@if (isRetrievingImage) {
+    <app-image-list></app-image-list>
+}

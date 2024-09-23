@@ -2,6 +2,7 @@ package com.spicejack.sj.services;
 
 import com.spicejack.sj.general.dto.PostDto;
 import com.spicejack.sj.general.dto.PostListingDto;
+import com.spicejack.sj.general.dto.PostListingPaginationDto;
 import com.spicejack.sj.general.dto.UserDto;
 import com.spicejack.sj.repositories.PostRepository;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,30 @@ public class PostService {
 
     public long getPostCount() {
         return this.postRepository.getPostCount();
+    }
+
+    public PostListingPaginationDto getPostListPage(int size, int offset) {
+        try {
+            PostListingPaginationDto page = new PostListingPaginationDto();
+            page.setHasNext(false);
+            page.setHasPrevious(false);
+
+            long postCount = getPostCount();
+
+            // If there should be a next page
+            page.setHasNext(offset + size < postCount);
+
+            // If there should be a previous page
+            page.setHasPrevious(offset > 1);
+
+            page.setPostListings(getPostList(size, offset));
+
+            return page;
+        }
+        // In the case that there is no data to retrieve return null
+        catch (Exception e) {
+            return null;
+        }
     }
 
     public List<PostListingDto> getPostList(int limit, int offset) {
