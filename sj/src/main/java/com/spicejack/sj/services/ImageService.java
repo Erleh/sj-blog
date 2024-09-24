@@ -2,6 +2,10 @@ package com.spicejack.sj.services;
 
 import com.spicejack.sj.general.dto.ImagePathListDto;
 import com.spicejack.sj.repositories.ImagePathRepository;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +20,7 @@ import java.util.logging.Logger;
 
 @Service
 public class ImageService {
-    private final String uploadDir = "uploads/";
+    private final String UPLOAD_DIR = "uploads/";
     private final ImagePathRepository imagePathRepository;
 
     private final Logger logger = Logger.getLogger(ImageService.class.toString());
@@ -25,6 +29,25 @@ public class ImageService {
             ImagePathRepository imagePathRepository
     ) {
         this.imagePathRepository = imagePathRepository;
+    }
+
+    public ResponseEntity<Resource> retrieveImageFromFS(String filename) {
+        try {
+            // Construct the path to the file
+            Path filePath = Paths.get(UPLOAD_DIR).resolve(filename).normalize();
+            Resource resource = new UrlResource(filePath.toUri());
+
+            // Check if the file exists and is readable
+            if(resource.exists() && resource.isReadable()) {
+                return ResponseEntity.ok()
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
+                        .body(resource);
+            } else {
+                return ResponseEntity.status(404).body(null);
+            }
+        } catch (Exception e){
+            return ResponseEntity.status(500).body(null);
+        }
     }
 
     public int getImageCount() {
@@ -53,10 +76,10 @@ public class ImageService {
         try {
             String fileExtension = getFileExtension(Objects.requireNonNull(file.getOriginalFilename()));
             String fileName = UUID.randomUUID() + "." + fileExtension;
-            File targetFile = new File(uploadDir + fileName);
+            File targetFile = new File(UPLOAD_DIR + fileName);
 
             // Check for directory
-            Files.createDirectories(Paths.get(uploadDir));
+            Files.createDirectories(Paths.get(UPLOAD_DIR));
 
             // Save file
             Files.copy(

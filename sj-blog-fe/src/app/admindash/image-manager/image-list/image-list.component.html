@@ -1,1 +1,5 @@
-<p>image-list works!</p>
+<div>
+    @for (image of imageSrc; track image.id) {
+        <img src={{image.path}}>
+    }
+</div>

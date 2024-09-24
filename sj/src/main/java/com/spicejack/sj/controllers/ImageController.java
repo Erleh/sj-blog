@@ -2,10 +2,9 @@ package com.spicejack.sj.controllers;
 
 import com.spicejack.sj.general.dto.ImagePathListDto;
 import com.spicejack.sj.services.ImageService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -40,5 +39,12 @@ public class ImageController {
             @RequestParam("id") long id
     ) {
         return this.imageService.deleteImage(id);
+    }
+
+    @GetMapping("/public/uploads/{filename:.+}")
+    public ResponseEntity<Resource> serveFile(
+            @PathVariable String filename
+    ) {
+        return this.imageService.retrieveImageFromFS(filename);
     }
 }
