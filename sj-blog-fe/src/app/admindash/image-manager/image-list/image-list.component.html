@@ -1,5 +1,5 @@
 <div>
     @for (image of imageSrc; track image.id) {
-        <img src={{image.path}}>
+        <app-image [imagePathDtoRef]="image" [imgSrc]="image.path"></app-image>
     }
 </div>

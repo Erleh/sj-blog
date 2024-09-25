@@ -3,11 +3,12 @@ import { ImagesService } from '../../../common/services/images.service';
 import { ImagePathListDto } from '../../../common/dtos/ImagePathListDto';
 import { ImagePathDto } from '../../../common/dtos/ImagePathDto';
 import { environment } from '../../../../environments/environments';
+import { ImageComponent } from './image/image.component';
 
 @Component({
   selector: 'app-image-list',
   standalone: true,
-  imports: [],
+  imports: [ImageComponent],
   templateUrl: './image-list.component.html',
   styleUrl: './image-list.component.css'
 })
@@ -44,10 +45,6 @@ export class ImageListComponent {
 
   createSourceList() {
     for (let image of this.imageList) {
-      // Image id is currently not unique, check reasons
-      //
-      //
-      //
       console.log(image.id);
       this.imageSrc.push({
         id: image.id,

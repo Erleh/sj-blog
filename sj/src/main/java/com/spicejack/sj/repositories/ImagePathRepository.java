@@ -11,7 +11,7 @@ public interface ImagePathRepository extends CrudRepository<ImagePathDto, Long> 
     @Query("SELECT path FROM images WHERE id = :id")
     ImagePathDto getImagePath(long id);
 
-    @Query("SELECT path FROM images ORDER BY id DESC LIMIT :limit OFFSET :offset")
+    @Query("SELECT * FROM images ORDER BY id DESC LIMIT :limit OFFSET :offset")
     List<ImagePathDto> getImagePaths(int offset, int limit);
 
     @Query("SELECT COUNT(*) FROM images")
