@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ImagePathDto } from '../../../../common/dtos/ImagePathDto';
 
 @Component({
@@ -14,13 +14,31 @@ export class ImageComponent {
   }) imagePathDtoRef !: ImagePathDto
   @Input({
     required: true
-  }) imgSrc !: string;
+  }) isSelected: boolean = false;
 
   @Output() onSelectImage = new EventEmitter();
 
-  isSelected: boolean = false;
+  shouldConfirmDeletion: boolean = false;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.isSelected) {
+      this.shouldConfirmDeletion = false;
+    }
+  }
 
   onSelect() {
-    this.onSelectImage.emit();
+    this.onSelectImage.emit(this.imagePathDtoRef);
+  }
+
+  handleConfirmDeletion() {
+    this.shouldConfirmDeletion = true;
+  }
+
+  confirmDeletion() {
+
+  }
+
+  cancelDeletion() {
+    this.shouldConfirmDeletion = false;
   }
 }

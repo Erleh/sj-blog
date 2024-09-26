@@ -1,5 +1,16 @@
 <div>
     @for (image of imageSrc; track image.id) {
-        <app-image [imagePathDtoRef]="image" [imgSrc]="image.path"></app-image>
+        <app-image 
+            [imagePathDtoRef]="image"
+            [isSelected]="image === selectedImage"
+            (onSelectImage)="handleImageSelection($event)"
+        ></app-image>
+    }
+    @if (hasPrevious) {
+        <button (click)="onPrevPage()">Prev</button>
+    }
+
+    @if (hasNext) {
+        <button (click)="onNextPage()">Next</button>
     }
 </div>

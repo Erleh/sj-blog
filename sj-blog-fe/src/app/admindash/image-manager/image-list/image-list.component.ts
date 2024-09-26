@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ImagesService } from '../../../common/services/images.service';
 import { ImagePathListDto } from '../../../common/dtos/ImagePathListDto';
 import { ImagePathDto } from '../../../common/dtos/ImagePathDto';
@@ -27,29 +27,55 @@ export class ImageListComponent {
   // Image sources for display
   imageSrc: ImagePathDto[] = [];
 
+  // User selected image
+  selectedImage!: ImagePathDto;
+
   constructor (
     private imagesService: ImagesService
   ) {
-      // Clear old list
-      this.imageSrc = [];
+    this.loadImages();
+  }
 
-      // Retrieve image paths
-      this.imagesService.getImagePathList(this.page).subscribe(imagePathList => {
-        this.imageListDto = imagePathList;
+  loadImages() {
+    // Clear old list
+    this.imageSrc = [];
 
-        this.imageList = imagePathList.images;
+    // Retrieve image paths
+    this.imagesService.getImagePathList(this.page).subscribe(imagePathList => {
+      this.imageListDto = imagePathList;
 
-        this.createSourceList();
-      });
+      this.imageList = imagePathList.images;
+
+      this.createSourceList();
+    });
   }
 
   createSourceList() {
     for (let image of this.imageList) {
-      console.log(image.id);
       this.imageSrc.push({
         id: image.id,
         path: `${this.imgSrcBaseUrl}/public/uploads/${image.path}`
       });
     }
+  }
+
+  handleImageSelection(selectedImage: ImagePathDto) {
+    this.selectedImage = selectedImage;
+  }
+
+  onNextPage() {
+    this.page++;
+
+    this.loadImages();
+  }
+
+  onPrevPage() {
+    if (this.page <= 1) {
+      return;
+    }
+
+    this.page--;
+
+    this.loadImages();
   }
 }

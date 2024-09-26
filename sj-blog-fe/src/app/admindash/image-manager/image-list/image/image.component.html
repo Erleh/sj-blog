@@ -1,3 +1,22 @@
-<div (click)="onSelect()">
-    <img src={{imgSrc}}>
+<div 
+    (click)="onSelect()" 
+    [class.selected]="isSelected"
+>
+    <img src={{imagePathDtoRef.path}}>
+    @if (isSelected) {
+        <p>src={{imagePathDtoRef.path}}</p>
+
+        @if (!shouldConfirmDeletion) {
+            <button (click)="handleConfirmDeletion()">Delete</button>
+        } @else {
+            <ul>
+                <li>
+                    <button (click)="confirmDeletion()">Yes</button>
+                </li>
+                <li>
+                    <button (click)="cancelDeletion()">No</button>
+                </li>
+            </ul>
+        }
+    }
 </div>
