@@ -4,6 +4,7 @@
             [imagePathDtoRef]="image"
             [isSelected]="image === selectedImage"
             (onSelectImage)="handleImageSelection($event)"
+            (onDeleteImage)="handleDeleteImageSelection($event)"
         ></app-image>
     }
     @if (hasPrevious) {

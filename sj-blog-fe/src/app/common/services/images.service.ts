@@ -20,6 +20,10 @@ export class ImagesService {
     this.imageControllerProxy.saveImage(file);
   }
 
+  deleteImageFile(id: number) {
+    return this.imageControllerProxy.deleteImage(id);
+  }
+
   getImagePathList(page: number): Observable<ImagePathListDto> {
     return this.imageControllerProxy.retrieveImageList(page);
   }

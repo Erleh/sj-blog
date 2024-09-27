@@ -100,13 +100,13 @@ public class ImageService {
         try {
             // Retrieve file path name
             String path = imagePathRepository.getImagePath(id).getPath();
-            Path filePath = Paths.get(path);
+            Path filePath = Paths.get("uploads", path);
 
             // Remove image path from database
             imagePathRepository.deleteImagePath(id);
 
             // Remove saved image file
-            Files.delete(filePath);
+            Files.delete(filePath.toAbsolutePath());
 
             return true;
         } catch (Exception e) {

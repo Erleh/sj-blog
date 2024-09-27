@@ -4,6 +4,7 @@ import com.spicejack.sj.general.dto.ImagePathListDto;
 import com.spicejack.sj.services.ImageService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +28,7 @@ public class ImageController {
         return this.imageService.getImages(offset, size);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/api/upload_image")
     public boolean saveImage(
             @RequestParam("image") MultipartFile file
@@ -34,7 +36,8 @@ public class ImageController {
         return this.imageService.saveImage(file);
     }
 
-    @PostMapping("/api/delete_image")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/api/delete_image")
     public boolean deleteImage(
             @RequestParam("id") long id
     ) {

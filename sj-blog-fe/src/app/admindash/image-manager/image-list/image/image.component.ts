@@ -17,6 +17,7 @@ export class ImageComponent {
   }) isSelected: boolean = false;
 
   @Output() onSelectImage = new EventEmitter();
+  @Output() onDeleteImage = new EventEmitter();
 
   shouldConfirmDeletion: boolean = false;
 
@@ -35,7 +36,7 @@ export class ImageComponent {
   }
 
   confirmDeletion() {
-
+    this.onDeleteImage.emit(this.imagePathDtoRef);
   }
 
   cancelDeletion() {

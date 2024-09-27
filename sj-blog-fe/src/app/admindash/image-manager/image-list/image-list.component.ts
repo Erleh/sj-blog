@@ -63,6 +63,12 @@ export class ImageListComponent {
     this.selectedImage = selectedImage;
   }
 
+  handleDeleteImageSelection(selectedImage: ImagePathDto) {
+    this.imagesService.deleteImageFile(selectedImage.id).subscribe(() => {
+      this.loadImages();
+    });
+  }
+
   onNextPage() {
     this.page++;
 

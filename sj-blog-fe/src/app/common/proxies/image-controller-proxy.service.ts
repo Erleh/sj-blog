@@ -34,7 +34,14 @@ export class ImageControllerProxyService {
     );
   }
 
-  deleteImage() {
-
+  deleteImage(id: number) {
+    return this.httpClient.delete(
+      `${environment.apiUrl}/api/delete_image`,
+      {
+        params: {
+          id
+        }
+      }
+    );
   }
 }

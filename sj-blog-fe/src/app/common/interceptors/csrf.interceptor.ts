@@ -9,8 +9,6 @@ export const csrfInterceptor: HttpInterceptorFn = (req, next) => {
 
   // Adds received csrfToken to the headers of requests
   if (csrfToken) {
-    console.log("CSRF FOUND");
-    console.log(csrfToken);
     modifiedReq = req.clone({
       setHeaders: {
         "X-XSRF-TOKEN": csrfToken,
