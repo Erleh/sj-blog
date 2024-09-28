@@ -4,7 +4,8 @@
 >
     <img src={{imagePathDtoRef.path}}>
     @if (isSelected) {
-        <p>src={{imagePathDtoRef.path}}</p>
+        <p>Copy and Paste the following line into the content section to embed a picture into the post: </p>
+        <p>{{"![Alt 'text'](" + imagePathDtoRef.path + " 'TITLE HERE')"}}</p>
 
         @if (!shouldConfirmDeletion) {
             <button (click)="handleConfirmDeletion()">Delete</button>

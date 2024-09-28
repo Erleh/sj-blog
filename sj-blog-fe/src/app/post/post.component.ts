@@ -36,6 +36,7 @@ export class PostComponent implements OnInit {
   loadPost(id: number) {
     this.postService.getPostPage(id).subscribe(postData => {
       this.postData = postData;
+      this.postData.creationDate = new Date(this.postData.creationDate);
     });
   }
 }
