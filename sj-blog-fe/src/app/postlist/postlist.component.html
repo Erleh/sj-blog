@@ -1,16 +1,21 @@
-@for (post of postList; track post.id) {
-    <app-postlisting [postData]="post"></app-postlisting>
-}
-<div>
-    @if (hasPreviousPage) {
-        <button 
-            [routerLink]="['', prevPageNum]" 
-            (click)="handlePrevPage()">Prev</button>
+<div class="postings">
+    <h1 class="title">Blog</h1>
+    <hr class="title-hr">
+    @for (post of postList; track post.id) {
+        <app-postlisting [postData]="post"></app-postlisting>
+        <hr>
     }
-    <br>
-    @if (hasNextPage) {
-        <button 
-            [routerLink]="['', nextPageNum]" 
-            (click)="handleNextPage()">Next</button>
-    }
+    <div>
+        @if (hasPreviousPage) {
+            <button 
+                [routerLink]="['', prevPageNum]" 
+                (click)="handlePrevPage()">Prev</button>
+        }
+        <br>
+        @if (hasNextPage) {
+            <button 
+                [routerLink]="['', nextPageNum]" 
+                (click)="handleNextPage()">Next</button>
+        }
+    </div>
 </div>

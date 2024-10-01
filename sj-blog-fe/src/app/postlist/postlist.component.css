@@ -1,0 +1,15 @@
+hr {
+    border-color: var(--main-clr-300);
+}
+
+.title {
+    text-align: center;
+}
+
+.title-hr {
+    border-color: var(--main-clr-200);
+}
+
+.postings {
+    margin: 0 2rem;
+}
