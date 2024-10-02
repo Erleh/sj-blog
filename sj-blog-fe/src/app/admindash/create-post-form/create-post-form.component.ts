@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostSubmissionFormDto } from '../../common/dtos/PostSubmissionFormDto';
 import { PostModificationFormDto } from '../../common/dtos/PostModificationDto';
+import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-create-post-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MarkdownComponent],
   templateUrl: './create-post-form.component.html',
   styleUrl: './create-post-form.component.css'
 })
@@ -24,9 +25,31 @@ export class CreatePostFormComponent implements OnChanges{
     content: this.modContent
   }
 
+  SUMMARY_LENGTH = 200;
+
+  constructor(
+    private markdownService: MarkdownService
+  ) {}
+
   ngOnChanges(changes: SimpleChanges): void {
     this.postSubmissionForm.title = this.modTitle;
     this.postSubmissionForm.content = this.modContent;
+  }
+
+  getSummary() {
+    // Convert Markdown to HTML
+    let htmlContent = this.markdownService.parse(this.postSubmissionForm.content);
+
+    // Create a temp element to hold the html
+    let tempElement = document.createElement('div');
+    tempElement.innerHTML = htmlContent.toString();
+
+    // Extract plain text
+    let plainText = tempElement.textContent || tempElement.innerText || '';
+    console.log(plainText);
+
+    // Extract summary from plain text
+    let summary = plainText.substring(0, this.SUMMARY_LENGTH) + "...";
   }
 
   onSubmit() {
@@ -42,7 +65,7 @@ export class CreatePostFormComponent implements OnChanges{
       // Create a new post
       this.postFormSubmissionEvent.emit(this.postSubmissionForm);
     }
-
+    this.getSummary();
     // Then clear form
     this.postSubmissionForm.title = "";
     this.postSubmissionForm.content = "";
