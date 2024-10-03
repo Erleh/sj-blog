@@ -16,6 +16,7 @@ export class PostComponent implements OnInit {
     id: 0,
     title: "",
     content: "",
+    thumbnail: "",
     authorUsername: "",
     creationDate: new Date()
   };

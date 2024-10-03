@@ -61,6 +61,8 @@ public class PostService {
     public void createPost(
             String title,
             String content,
+            String summary,
+            String thumbnail,
             String email
     ) {
         // Retrieve user data using attached email
@@ -71,14 +73,15 @@ public class PostService {
         String username = user.getUsername();
 
         // Update database
-        this.postRepository.createNewPost(userId, title, content, username);
+        this.postRepository.createNewPost(userId, title, content, summary, thumbnail, username);
     }
 
     public void updatePost(
             long postId,
             String title,
             String content,
-            String email
+            String email,
+            String thumbnail
     ) {
         // Retrieve user data using attached email
         UserDto user = userService.getUserByEmail(email);
@@ -88,7 +91,7 @@ public class PostService {
         String username = user.getUsername();
 
         // Update database
-        this.postRepository.updatePost(postId, userId, title, content, username);
+        this.postRepository.updatePost(postId, userId, title, content, thumbnail, username);
     }
 
     public void deletePost(

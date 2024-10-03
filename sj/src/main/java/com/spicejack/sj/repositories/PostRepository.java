@@ -19,12 +19,12 @@ public interface PostRepository extends CrudRepository<PostDto, Long> {
     PostDto getPost(long id);
 
     @Modifying
-    @Query("INSERT INTO posts (id, user_id, title, content, author_username, creation_date) VALUES (DEFAULT, :userid, :title, :content, :authorUsername, DEFAULT)")
-    void createNewPost(long userid, String title, String content, String authorUsername);
+    @Query("INSERT INTO posts (id, user_id, title, content, summary, thumbnail, author_username, creation_date) VALUES (DEFAULT, :userid, :title, :content, :summary, :thumbnail, :authorUsername, DEFAULT)")
+    void createNewPost(long userid, String title, String content, String summary, String thumbnail, String authorUsername);
 
     @Modifying
-    @Query("UPDATE posts SET user_id = :userid, title = :title, content = :content, author_username = :authorUsername WHERE id = :postId")
-    void updatePost(long postId, long userid, String title, String content, String authorUsername);
+    @Query("UPDATE posts SET user_id = :userid, title = :title, content = :content, thumbnail = :thumbnail, author_username = :authorUsername WHERE id = :postId")
+    void updatePost(long postId, long userid, String title, String content, String thumbnail, String authorUsername);
 
     @Modifying
     @Query("DELETE FROM posts WHERE id = :postId")

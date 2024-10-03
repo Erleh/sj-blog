@@ -18,6 +18,13 @@
         name="content"
         required [(ngModel)]="postSubmissionForm.content"
     ></textarea>
-    <label for="img">Listing Img</label>
+    <label for="thumbnail">Thumbnail URL</label>
+    <input
+        id="thumbnail"
+        placeholder="Add thumbnail URL here"
+        type="text"
+        name="thumbnail"
+        required [(ngModel)]="postSubmissionForm.thumbnail"
+    >
     <button type="submit">Post!</button>
 </form>

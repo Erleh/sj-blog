@@ -4,6 +4,7 @@ public class PostUpdateFormDto {
     long id;
     String title;
     String content;
+    String thumbnail;
 
     public PostUpdateFormDto() {}
 
@@ -13,6 +14,10 @@ public class PostUpdateFormDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public void setId(long id) {
@@ -25,6 +30,10 @@ public class PostUpdateFormDto {
 
     public long getId() {
         return id;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
     }
 
     public String getContent() {

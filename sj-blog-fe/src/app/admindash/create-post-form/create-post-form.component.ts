@@ -14,6 +14,7 @@ import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 export class CreatePostFormComponent implements OnChanges{
   @Input() modTitle!: string;
   @Input() modContent!: string;
+  @Input() modThumbnail!: string;
   @Input() modId!: number;
   @Input() isModifying: boolean = false;
   
@@ -22,34 +23,17 @@ export class CreatePostFormComponent implements OnChanges{
   
   postSubmissionForm: PostSubmissionFormDto = {
     title: this.modTitle, 
-    content: this.modContent
+    content: this.modContent,
+    summary: "",
+    thumbnail: this.modThumbnail
   }
 
   SUMMARY_LENGTH = 200;
 
-  constructor(
-    private markdownService: MarkdownService
-  ) {}
-
   ngOnChanges(changes: SimpleChanges): void {
     this.postSubmissionForm.title = this.modTitle;
     this.postSubmissionForm.content = this.modContent;
-  }
-
-  getSummary() {
-    // Convert Markdown to HTML
-    let htmlContent = this.markdownService.parse(this.postSubmissionForm.content);
-
-    // Create a temp element to hold the html
-    let tempElement = document.createElement('div');
-    tempElement.innerHTML = htmlContent.toString();
-
-    // Extract plain text
-    let plainText = tempElement.textContent || tempElement.innerText || '';
-    console.log(plainText);
-
-    // Extract summary from plain text
-    let summary = plainText.substring(0, this.SUMMARY_LENGTH) + "...";
+    this.postSubmissionForm.thumbnail = this.modThumbnail;
   }
 
   onSubmit() {
@@ -58,16 +42,20 @@ export class CreatePostFormComponent implements OnChanges{
       let modificationForm: PostModificationFormDto = {
         id: this.modId,
         title: this.postSubmissionForm.title,
-        content: this.postSubmissionForm.content
+        content: this.postSubmissionForm.content,
+        summary: this.postSubmissionForm.summary,
+        thumbnail: this.postSubmissionForm.thumbnail
       };
       this.postFormModificationEvent.emit(modificationForm);
     } else {
       // Create a new post
       this.postFormSubmissionEvent.emit(this.postSubmissionForm);
     }
-    this.getSummary();
+
     // Then clear form
     this.postSubmissionForm.title = "";
     this.postSubmissionForm.content = "";
+    this.postSubmissionForm.summary = "";
+    this.postSubmissionForm.thumbnail = "";
   }
 }

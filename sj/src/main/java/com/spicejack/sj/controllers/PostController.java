@@ -51,6 +51,8 @@ public class PostController {
         this.postService.createPost(
                 postSubmission.getTitle(),
                 postSubmission.getContent(),
+                postSubmission.getSummary(),
+                postSubmission.getThumbnail(),
                 principal.getName()
         );
     }
@@ -65,6 +67,7 @@ public class PostController {
                 updateSubmission.getId(),
                 updateSubmission.getTitle(),
                 updateSubmission.getContent(),
+                updateSubmission.getThumbnail(),
                 principal.getName()
         );
     }

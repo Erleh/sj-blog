@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS posts (
     user_id                 INTEGER                     NOT NULL,
     title                   VARCHAR(50)                 NOT NULL,
     content                 TEXT                        NOT NULL,
+    summary                 TEXT                        NOT NULL,
+    thumbnail               VARCHAR(150)                 NOT NULL,
     author_username         VARCHAR(30)                 NOT NULL,
     creation_date           DATETIME                    DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)

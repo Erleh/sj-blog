@@ -5,6 +5,9 @@
     <img src={{imagePathDtoRef.path}}>
     @if (isSelected) {
         <p>Copy and Paste the following line into the content section to embed a picture into the post: </p>
+        <p>URL : </p>
+        <p>{{imagePathDtoRef.path}}</p>
+        <p>MARKDOWN (modify within the quotes of 'text' and 'TITLE HERE'): </p>
         <p>{{"![Alt 'text'](" + imagePathDtoRef.path + " 'TITLE HERE')"}}</p>
 
         @if (!shouldConfirmDeletion) {

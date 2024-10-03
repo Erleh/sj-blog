@@ -6,6 +6,7 @@ public class PostDto {
     long id;
     String title;
     String content;
+    String thumbnail;
     String authorUsername;
     Timestamp creationDate;
 
@@ -21,6 +22,10 @@ public class PostDto {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public void setAuthorUsername(String authorUsername) {
@@ -41,6 +46,10 @@ public class PostDto {
 
     public long getId() {
         return id;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
     }
 
     public String getAuthorUsername() {

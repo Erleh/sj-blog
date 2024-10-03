@@ -24,6 +24,8 @@ export class ModificationPostlistComponent implements OnInit{
   selectedPost: PostListingDto = {
     id: 0,
     title: "",
+    summary: "",
+    thumbnail: "",
     authorUsername: "",
     creationDate: new Date()
   };
