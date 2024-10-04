@@ -49,6 +49,8 @@ export class PostlistComponent {
       this.postList = res.postListings;
       this.hasNextPage = res.hasNext;
       this.hasPreviousPage = res.hasPrevious;
+
+      console.log(res);
     });
   }
 

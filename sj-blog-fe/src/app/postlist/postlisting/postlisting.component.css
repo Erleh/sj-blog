@@ -1,3 +1,14 @@
 a {
     text-decoration: none;
 }
+
+.postlisting {
+    grid-template-columns: .5fr 3fr;
+    gap: 1rem;
+}
+
+.postlisting img {
+    width: 16rem;
+    justify-self: center;
+    align-self: center;
+}

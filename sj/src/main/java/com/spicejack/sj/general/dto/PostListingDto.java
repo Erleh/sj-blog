@@ -6,6 +6,8 @@ public class PostListingDto {
     long id;
     String title;
     String authorUsername;
+    String summary;
+    String thumbnail;
     Timestamp creationDate;
 
     public PostListingDto(){}
@@ -26,6 +28,14 @@ public class PostListingDto {
         this.creationDate = creation_date;
     }
 
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
     public long getId() {
         return id;
     }
@@ -36,6 +46,14 @@ public class PostListingDto {
 
     public String getAuthorUsername() {
         return authorUsername;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
     }
 
     public Timestamp getCreationDate() {

@@ -1,8 +1,10 @@
 <div class="post">
     <h1>{{postData.title}}</h1>
-    <h3>{{postData.authorUsername}}</h3>
-     <markdown
+    <div class="markdown">
+        <markdown
         [data]="postData.content">
     </markdown>
+</div>
+    <h3>{{postData.authorUsername}}</h3>
     <p>{{postData.creationDate.toDateString()}}</p>
 </div>
