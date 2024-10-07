@@ -60,4 +60,10 @@ export class GetTestsService {
       }
     );
   }
+
+  refreshToken() {
+    return this.http.get(
+      `${environment.apiUrl}/public/refresh-token`
+    );
+  }
 }

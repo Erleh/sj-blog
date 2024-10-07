@@ -14,6 +14,7 @@ export class GetTestsComponent {
   @Output() privateGetHello = new EventEmitter();
   @Output() getIsAdmin = new EventEmitter();
   @Output() adminGetHello = new EventEmitter();
+  @Output() refreshToken = new EventEmitter();
 
   getHelloRequest() {
     this.getHello.emit();
@@ -37,5 +38,9 @@ export class GetTestsComponent {
 
   adminGetHelloRequest() {
     this.adminGetHello.emit();
+  }
+
+  refreshTokenRequest() {
+    this.refreshToken.emit();
   }
 }

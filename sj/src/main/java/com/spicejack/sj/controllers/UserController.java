@@ -40,7 +40,7 @@ public class UserController {
         return userService.checkIfUserExistsByUsername(username);
     }
 
-    @GetMapping("/public/is_logged_in")
+    @GetMapping("/public/has_principal")
     boolean isLoggedIn(
             @AuthenticationPrincipal OAuth2IntrospectionAuthenticatedPrincipal principal
     ) {

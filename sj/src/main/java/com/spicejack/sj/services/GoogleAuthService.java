@@ -41,6 +41,16 @@ public class GoogleAuthService {
         return googleAuthApisProxy.getTokenInfo(accessToken);
     }
 
+    public GoogleTokenExchangeDto refreshAccessToken(String refreshToken) {
+        // Request google for a new access token
+        return googleAuthApisProxy.refreshAccessToken(
+                client_id,
+                client_secret,
+                refreshToken,
+                "refresh_token"
+        );
+    }
+
     public void revokeToken(String refreshToken) {
         googleAuthApisProxy.revokeToken(refreshToken);
     }

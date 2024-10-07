@@ -14,7 +14,7 @@ export class AuthService implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.checkIsLoggedIn();
+    this.checkHasPrincipal();
   }
 
   login() {
@@ -27,9 +27,10 @@ export class AuthService implements OnInit {
     this.loggedIn.next(false);
   }
 
-  // Check the backend for authentication object to validate the user is logged in
-  checkIsLoggedIn() {
-    this.userControllerProxy.checkIsLoggedIn().subscribe(isLoggedIn => {
+  // Check the backend for authentication object to validate the user
+  // exists in the backend
+  checkHasPrincipal() {
+    this.userControllerProxy.checkHasPrincipal().subscribe(isLoggedIn => {
       this.loggedIn.next(isLoggedIn);
     });
   }

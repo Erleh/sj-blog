@@ -18,8 +18,6 @@ public class GoogleOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
     private final GoogleAuthService googleAuthService;
     private final UserService userService;
 
-    private final Logger logger = Logger.getLogger(GoogleOpaqueTokenIntrospector.class.toString());
-
     public GoogleOpaqueTokenIntrospector(
             GoogleAuthService googleAuthService,
             UserService userService
@@ -30,7 +28,7 @@ public class GoogleOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
 
     @Override
     public OAuth2IntrospectionAuthenticatedPrincipal introspect(String token) {
-        String introspectionUri = "https://oauth2.googleapis.com/tokeninfo";
+        // String introspectionUri = "https://oauth2.googleapis.com/tokeninfo";
 
         GoogleTokenInfoDto tokenInfo = googleAuthService.getGoogleTokenInfo(token);
         Collection<String> roles = userService.findUserRolesByEmail(tokenInfo.getEmail());

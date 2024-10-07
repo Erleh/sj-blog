@@ -25,7 +25,7 @@ export class AuthserversComponent implements OnInit{
 
   ngOnInit() {
     // Checks if the user is logged in already
-    this.authService.checkIsLoggedIn();
+    this.authService.checkHasPrincipal();
 
     // If so, then redirect the user back to the front page instead of login again
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
@@ -64,7 +64,8 @@ export class AuthserversComponent implements OnInit{
     this.googleAuthService.checkForUserByToken().subscribe((exists) => {
       if (exists) {
         // Successful login if true
-        this.authService.checkIsLoggedIn();
+        this.authService.login();
+        this.authService.checkHasPrincipal();
       } else {
         // Ask to create account if false
         this.shouldCreateAccount = true;

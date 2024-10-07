@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.checkIsLoggedIn();
+    this.authService.checkHasPrincipal();
   }
 
   logout() {

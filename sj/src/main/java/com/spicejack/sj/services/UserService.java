@@ -4,14 +4,11 @@ import com.spicejack.sj.general.dto.UserDto;
 import com.spicejack.sj.repositories.RefreshTokenRepository;
 import com.spicejack.sj.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CookieValue;
 
 import java.util.Collection;
-import java.util.logging.Logger;
 
 @Service
 public class UserService {
-    private final Logger logger = Logger.getLogger(UserService.class.toString());
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final GoogleAuthService googleAuthService;
@@ -43,6 +40,18 @@ public class UserService {
     }
 
     public boolean checkIfUserExistsByUsername(String username) { return userRepository.checkIfUserExistsByUsername(username); }
+
+    public boolean checkForRefreshToken(String refreshToken) {
+        // Check if refresh token exists
+        int tokenCount = refreshTokenRepository.findRefreshToken(refreshToken);
+
+        if (tokenCount == 0) {
+            return false;
+        }
+
+        // return if the refresh token was valid
+        return refreshTokenRepository.isRefreshTokenValid(refreshToken);
+    }
 
     public Collection<String> findUserRolesByEmail(String email) { return userRepository.findUserRolesByEmail(email); }
 

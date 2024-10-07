@@ -5,6 +5,8 @@ import com.spicejack.sj.general.dto.GoogleTokenInfoDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @FeignClient(value = "googleApiClient", url = "https://oauth2.googleapis.com")
 public interface GoogleAuthApisProxy{
     @RequestMapping(method = RequestMethod.POST, value = "/token")
@@ -24,5 +26,13 @@ public interface GoogleAuthApisProxy{
     @RequestMapping(method = RequestMethod.POST, value = "/revoke")
     void revokeToken(
             @RequestParam String token
+    );
+
+    @RequestMapping(method = RequestMethod.POST, value = "/token")
+    GoogleTokenExchangeDto refreshAccessToken(
+        @RequestParam String client_id,
+        @RequestParam String client_secret,
+        @RequestParam String refresh_token,
+        @RequestParam String grant_type
     );
 }

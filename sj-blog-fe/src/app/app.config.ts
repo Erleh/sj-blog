@@ -6,6 +6,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { csrfInterceptor } from './common/interceptors/csrf.interceptor';
 import { headerInterceptor } from './common/interceptors/header.interceptor';
 import { provideMarkdown } from 'ngx-markdown';
+import { refreshInterceptor } from './common/interceptors/refresh.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +21,8 @@ export const appConfig: ApplicationConfig = {
       withInterceptors(
         [
           csrfInterceptor,
-          headerInterceptor
+          headerInterceptor,
+          refreshInterceptor
         ]
       )
     )

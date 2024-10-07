@@ -55,4 +55,11 @@ export class TestbarComponent {
       console.log(res);
     })
   }
+
+  onRefreshTokenEvent() {
+    this.getTestService.refreshToken().subscribe(res => {
+      console.log("--Refresh Token sent check cookies /public/refresh-token");
+      console.log(res);
+    });
+  }
 }

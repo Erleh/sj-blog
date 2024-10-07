@@ -23,9 +23,9 @@ export class UserControllerProxyService {
     );
   }
 
-  checkIsLoggedIn() {
+  checkHasPrincipal() {
     return this.httpClient.get<boolean>(
-      `${environment.apiUrl}/public/is_logged_in`
+      `${environment.apiUrl}/public/has_principal`
     );
   }
 
