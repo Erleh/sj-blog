@@ -53,6 +53,10 @@ public class UserService {
         return refreshTokenRepository.isRefreshTokenValid(refreshToken);
     }
 
+    public void deleteUserRefreshTokens(long userId) {
+        this.refreshTokenRepository.deleteUserSavedRefreshTokens(userId);
+    }
+
     public Collection<String> findUserRolesByEmail(String email) { return userRepository.findUserRolesByEmail(email); }
 
     public void createUser(String username, String email, boolean isActive) {

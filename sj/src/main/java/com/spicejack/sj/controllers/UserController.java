@@ -29,6 +29,9 @@ public class UserController {
         String userEmail = principal.getName();
         long userId = userService.getUserIdByEmail(userEmail);
 
+        // Clear existing refresh tokens as needed
+        userService.deleteUserRefreshTokens(userId);
+
         // Save refresh token
         userService.saveRefreshToken(userId, refreshToken, true, iss);
     }
