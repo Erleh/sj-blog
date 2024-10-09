@@ -11,3 +11,11 @@
 .post {
     white-space: pre-line;
 }
+
+.post h1 {
+    margin: 0;
+}
+
+.signoff {
+    margin: 0;
+}

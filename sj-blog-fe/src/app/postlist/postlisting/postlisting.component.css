@@ -3,11 +3,50 @@ a {
 }
 
 .postlisting {
+    max-height: 10rem;
     grid-template-columns: .5fr 3fr;
     gap: 1rem;
 }
 
+.postlisting .content {
+    grid-template-areas:    
+        "title   title"
+        "summary summary"
+        "author  date";
+    grid-template-rows: auto 1fr auto;
+}
+
+.content .title {
+    grid-area: title;
+    margin: 0;
+}
+
+.content .summary {
+    grid-area: summary;
+    max-height: 5rem;
+    overflow: hidden;
+    margin: 0;
+}
+
+.content .author {
+    grid-area: author;
+    margin: 0;
+}
+
+.content .date {
+    grid-area: date;
+    text-align: right;
+    margin: 0;
+}
+
+.postlisting:hover {
+    transition-property: background-color;
+    background-color: var(--main-clr-400);
+    transition-duration: .5s;
+}
+
 .postlisting img {
+    max-height: 10rem;
     width: 16rem;
     justify-self: center;
     align-self: center;
