@@ -1,0 +1,22 @@
+.auth-btns {
+    max-width: 30rem;
+    padding: 5rem;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid var(--main-clr-300);
+    border-radius: 1rem;
+}
+
+::ng-deep .auth-btn {
+    background-color: var(--main-clr-500);
+    border: none;
+    color: var(--main-clr-200);
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+}
+
+::ng-deep .auth-btn:hover{
+    transition: background-color;
+    transition-duration: .2s;
+    background-color: var(--main-clr-400);
+}
