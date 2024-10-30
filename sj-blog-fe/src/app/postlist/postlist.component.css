@@ -1,9 +1,11 @@
 hr {
-    border-color: var(--main-clr-300);
+    border-top: 1px;
+    border-color: var(--main-clr-500);
 }
 
 .title {
     text-align: center;
+    color: var(--sc-clr-200);
 }
 
 .title-hr {

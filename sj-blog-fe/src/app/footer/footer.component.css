@@ -1,0 +1,17 @@
+footer {
+    /* position: absolute;
+    bottom: 0;
+    width: 100%; */
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--sc-font);
+    background-color: var(--main-clr-200);
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: var(--sc-font);
+}

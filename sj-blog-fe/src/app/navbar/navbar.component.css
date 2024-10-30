@@ -1,3 +1,9 @@
+nav {
+    justify-content: space-between;
+    background-color: var(--main-clr-500);
+    box-shadow: 0 0 3rem .5rem var(--main-clr-500);
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -12,4 +18,8 @@ li a {
     text-decoration: none;
     padding: 1rem;
     margin: -1rem;
+}
+
+.logout {
+    align-self: flex-end;
 }

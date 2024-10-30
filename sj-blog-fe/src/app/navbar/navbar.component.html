@@ -5,7 +5,7 @@
         </li>
     </ul>
     @if (authService.isLoggedIn$ | async) {
-        <ul>
+        <ul class="logout">
             <li>
                 <button (click)="logout()">Logout</button>
             </li>

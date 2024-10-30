@@ -1,5 +1,6 @@
 a {
     text-decoration: none;
+    min-height: 9rem;
 }
 
 .postlisting {
@@ -19,6 +20,7 @@ a {
 .content .title {
     grid-area: title;
     margin: 0;
+    color: var(--sc-clr-300);
 }
 
 .content .summary {
@@ -26,6 +28,7 @@ a {
     max-height: 5rem;
     overflow: hidden;
     margin: 0;
+    font-weight: lighter;
 }
 
 .content .author {

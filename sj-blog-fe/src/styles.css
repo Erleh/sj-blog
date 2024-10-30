@@ -1,12 +1,17 @@
 :root {
     --main-font-family: "Poppins";
 
-    --hlt-clr: #F7F0F5;
+    --main-font: white;
+    --sc-font: black;
 
-    --main-clr-200: #DECBB7;
-    --main-clr-300: #8F857D;
-    --main-clr-400: #5C5552;
-    --main-clr-500: #433633;
+    --main-clr-200: #EFFBFC;
+    --main-clr-400: #24677A;
+    --main-clr-500: #234856;
+
+    --sc-clr-200: #FDE7E6;
+    --sc-clr-300: #FFABAC;
+    --sc-clr-400: #E64D51;
+    --sc-clr-500: #7F1C2D;
 }
 
 *, *::before, *::after {
@@ -15,8 +20,8 @@
 
 body {
     font-family: var(--main-font-family), "sans-serif";
-    background-color: var(--main-clr-500);
-    color: var(--hlt-clr);
+    background-color: var(--main-clr-400);
+    color: var(--main-font);
     margin: 0;
 }
 
