@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { GoogleSvgIconComponent } from "../../common/svgs/google-svg-icon/google-svg-icon.component";
 
 @Component({
   selector: 'app-google-auth',
   standalone: true,
-  imports: [],
+  imports: [GoogleSvgIconComponent],
   templateUrl: './google-auth.component.html',
   styleUrl: './google-auth.component.css'
 })

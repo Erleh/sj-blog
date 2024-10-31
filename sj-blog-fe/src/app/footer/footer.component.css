@@ -1,7 +1,4 @@
 footer {
-    /* position: absolute;
-    bottom: 0;
-    width: 100%; */
     padding: 1.5rem;
     text-align: center;
     color: var(--sc-font);
@@ -14,4 +11,5 @@ footer p {
 
 footer a {
     color: var(--sc-font);
+    padding: .25rem;
 }

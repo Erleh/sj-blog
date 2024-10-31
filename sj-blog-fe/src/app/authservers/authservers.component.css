@@ -1,22 +1,25 @@
 .auth-btns {
     max-width: 30rem;
-    padding: 5rem;
-    margin: 0 auto;
+    padding: 3rem;
+    margin: 5rem auto;
     text-align: center;
     border: 1px solid var(--main-clr-300);
-    border-radius: 1rem;
+    border-radius: .2rem;
+    background-color: var(--main-clr-200);
+    color: var(--main-clr-500);
 }
 
 ::ng-deep .auth-btn {
-    background-color: var(--main-clr-500);
-    border: none;
-    color: var(--main-clr-200);
+    max-height: 2rem;
+    border: 1px solid var(--main-clr-500);
+    color: var(--main-clr-500);
     border-radius: 1rem;
-    padding: .5rem 1rem;
+    padding: .5rem 2rem;
+    background-color: var(--main-clr-200);
 }
 
 ::ng-deep .auth-btn:hover{
     transition: background-color;
     transition-duration: .2s;
-    background-color: var(--main-clr-400);
+    background-color: var(--main-font);
 }

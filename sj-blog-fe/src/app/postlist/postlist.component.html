@@ -5,15 +5,17 @@
         <app-postlisting [postData]="post"></app-postlisting>
         <hr>
     }
-    <div>
+    <div class="container-grid">
         @if (hasPreviousPage) {
-            <button 
+            <button
+                class="page-nav prev" 
                 [routerLink]="['', prevPageNum]" 
                 (click)="handlePrevPage()">Prev</button>
         }
         <br>
         @if (hasNextPage) {
             <button 
+                class="page-nav next"
                 [routerLink]="['', nextPageNum]" 
                 (click)="handleNextPage()">Next</button>
         }

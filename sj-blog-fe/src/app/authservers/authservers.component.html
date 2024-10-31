@@ -1,4 +1,5 @@
 <div class="auth-btns">
+    <h3>Sign in</h3>
     @if (!shouldCreateAccount) {
         <app-google-auth (authWithGoogle)="handleAuthWithGoogle()"></app-google-auth>
     }
