@@ -3,11 +3,13 @@ import { PostService } from '../common/services/post.service';
 import { PostListingDto } from '../common/dtos/PostListingDto';
 import { PostlistingComponent } from "./postlisting/postlisting.component";
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { DiscordSvgIconComponent } from "../common/svgs/discord-svg-icon/discord-svg-icon.component";
+import { YoutubeSvgIconComponent } from "../common/svgs/youtube-svg-icon/youtube-svg-icon.component";
 
 @Component({
   selector: 'app-postlist',
   standalone: true,
-  imports: [PostlistingComponent, RouterLink],
+  imports: [PostlistingComponent, RouterLink, DiscordSvgIconComponent, YoutubeSvgIconComponent],
   templateUrl: './postlist.component.html',
   styleUrl: './postlist.component.css'
 })

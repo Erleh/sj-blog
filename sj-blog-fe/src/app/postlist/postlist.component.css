@@ -12,10 +12,6 @@ hr {
     border-color: var(--main-clr-200);
 }
 
-.postings {
-    margin: 0 2rem;
-}
-
 .page-nav {
     padding: .5rem 1rem;
     background-color: var(--sc-clr-400);
@@ -30,4 +26,38 @@ hr {
 
 .page-nav.prev {
     justify-self: flex-start;
+}
+
+.columns {
+    grid-template-areas: 
+        ".. main sidebar";
+    gap: 1rem;
+    grid-template-columns: .1fr 2fr max-content;
+}
+
+.post-list {
+    grid-area: main;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    grid-template-areas: 
+        "top"
+        "mid"
+        "mid"
+        "bottom";
+    grid-template-rows: .1fr max-content max-content .1fr;
+    justify-self: flex-end;
+    text-align: center;
+}
+
+.sidebar .mid {
+    background-color: var(--main-clr-200);
+    color: var(--sc-font);
+    padding: 1rem;
+    grid-area: mid;
+}
+
+.socials a{
+    margin: .2rem;
 }

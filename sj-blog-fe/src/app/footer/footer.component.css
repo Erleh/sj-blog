@@ -1,5 +1,6 @@
 footer {
     padding: 1.5rem;
+    margin-top: 3rem;
     text-align: center;
     color: var(--sc-font);
     background-color: var(--main-clr-200);

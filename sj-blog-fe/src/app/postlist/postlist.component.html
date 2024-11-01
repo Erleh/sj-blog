@@ -1,23 +1,34 @@
-<div class="postings">
-    <h1 class="title">Blog</h1>
-    <hr class="title-hr">
-    @for (post of postList; track post.id) {
-        <app-postlisting [postData]="post"></app-postlisting>
-        <hr>
-    }
-    <div class="container-grid">
-        @if (hasPreviousPage) {
-            <button
+<div class="container-grid columns postings">
+    <div class="post-list">    
+        <h1 class="title">Blog</h1>
+        <hr class="title-hr">
+        @for (post of postList; track post.id) {
+            <app-postlisting [postData]="post"></app-postlisting>
+            <hr>
+        }
+        <div class="container-grid">
+            @if (hasPreviousPage) {
+                <button
                 class="page-nav prev" 
                 [routerLink]="['', prevPageNum]" 
                 (click)="handlePrevPage()">Prev</button>
-        }
-        <br>
-        @if (hasNextPage) {
-            <button 
+            }
+            <br>
+            @if (hasNextPage) {
+                <button 
                 class="page-nav next"
                 [routerLink]="['', nextPageNum]" 
                 (click)="handleNextPage()">Next</button>
-        }
+            }
+        </div>
+    </div>
+    <div class="container-grid sidebar">
+        <div class="mid">    
+            <p>FOLLOW US</p>
+            <div class="socials">
+                <a><app-discord-svg-icon></app-discord-svg-icon></a>
+                <a><app-youtube-svg-icon></app-youtube-svg-icon></a>
+            </div>
+        </div>
     </div>
 </div>
