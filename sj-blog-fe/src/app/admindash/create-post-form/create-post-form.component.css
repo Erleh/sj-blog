@@ -1,5 +1,32 @@
+input[type=text] {
+    width: 100%;
+    padding: .8rem .5rem;
+    margin: .5rem 0;
+    box-sizing: border-box;
+    background-color: var(--main-clr-200);
+    border: 1px solid var(--sc-font);
+}
+
+button[type=submit] {
+    width: min-content;
+    padding: .5rem 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--sc-clr-400);
+    color: var(--main-font);
+    border: 1px solid var(--sc-font);
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    padding: .8rem .5rem;
+    margin: .5rem 0;
+    font-family: var(--main-font-family);
+    background-color: var(--main-clr-200);
+    border: 1px solid var(--sc-font);
+}
+
 .post-form {
-    margin: 1rem;
     flex-direction: column;
     min-width: 50%;
 }

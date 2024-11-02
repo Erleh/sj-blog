@@ -44,7 +44,7 @@ a {
 
 .postlisting:hover {
     transition-property: background-color;
-    background-color: var(--main-clr-400);
+    background-color: var(--main-clr-500);
     transition-duration: .5s;
 }
 

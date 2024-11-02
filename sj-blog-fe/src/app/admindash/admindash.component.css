@@ -1,0 +1,9 @@
+.dashboard {
+    grid-template-areas: 
+        ".. dash dash ..";
+    grid-template-columns: .1fr 1fr 1fr .1fr;
+}
+
+.dash {
+    grid-area: dash;
+}

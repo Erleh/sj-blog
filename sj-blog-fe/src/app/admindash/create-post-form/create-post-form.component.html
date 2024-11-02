@@ -11,13 +11,6 @@
         name="title"
         required [(ngModel)]="postSubmissionForm.title"
     >
-    <label for="content">Content</label>
-    <textarea 
-        id="content" 
-        placeholder="Add content here" 
-        name="content"
-        required [(ngModel)]="postSubmissionForm.content"
-    ></textarea>
     <label for="thumbnail">Thumbnail URL</label>
     <input
         id="thumbnail"
@@ -26,5 +19,12 @@
         name="thumbnail"
         required [(ngModel)]="postSubmissionForm.thumbnail"
     >
-    <button type="submit">Post!</button>
+    <label for="content">Content</label>
+    <textarea 
+        id="content" 
+        placeholder="Add content here" 
+        name="content"
+        required [(ngModel)]="postSubmissionForm.content"
+    ></textarea>
+    <button type="submit">Post/Modify</button>
 </form>
