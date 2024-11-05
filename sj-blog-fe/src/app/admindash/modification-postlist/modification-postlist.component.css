@@ -1,0 +1,19 @@
+ul {
+    padding: 0;
+}
+
+.page-nav {
+    padding: .5rem 1rem;
+    background-color: var(--sc-clr-400);
+    color: var(--main-font);
+    border: none;
+    border-radius: .25rem;
+}
+
+.page-nav.next {
+    justify-self: flex-end;
+}
+
+.page-nav.prev {
+    justify-self: flex-start;
+}

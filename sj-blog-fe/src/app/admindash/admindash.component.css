@@ -1,3 +1,10 @@
+.dash-checkbox {
+    display: block;
+    padding: .5rem .5rem;
+    background-color: var(--sc-clr-200);
+    color: var(--sc-font);
+}
+
 .dashboard {
     grid-template-areas: 
         ".. dash dash ..";

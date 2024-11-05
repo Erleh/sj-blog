@@ -1,19 +1,20 @@
-<li (click)="handleSelection()" [class.selected]="isSelected">
-    <p>{{postData.id}}</p>
-    <p>{{postData.title}}</p>
-    <p>{{date}}</p>
-    @if (!shouldConfirmDeletion) {
-        <div (click)="handleConfirmDeletion()">
-            <p>Delete</p>
-        </div>
-    } @else {
-        <ul>
-            <li>
-                <p (click)="confirmDeletion()">Yes</p>
-            </li>
-            <li>
-                <p (click)="cancelDeletion()">No</p>
-            </li>
-        </ul>
-    }
+<div class="container-grid postref" (click)="handleSelection()">
+    <img src={{postData.thumbnail}} class="thumbnail">
+    <li 
+    [class.selected]="isSelected"
+    class="container-grid content"
+    >
+    <p class="title">{{postData.title}}</p>
+    <p class="summary">{{postData.summary}}</p>
+    <p class="author">{{postData.authorUsername}}</p>
+    <p class="date">{{date}}</p>
 </li>
+</div>
+@if (!shouldConfirmDeletion) {
+    <button class="main-btn" (click)="handleConfirmDeletion()">Delete</button>
+} @else {
+    <div id="delete-options">
+        <button (click)="confirmDeletion()" class="main-btn">Yes</button>
+        <button (click)="cancelDeletion()" class="main-btn">No</button>
+    </div>
+}

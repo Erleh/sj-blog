@@ -1,6 +1,20 @@
+<label for="retrieveImg" class="dash-checkbox">
+    <input 
+        type="checkbox" 
+        id="retrieveImg"
+        [checked]="isRetrievingImage"
+        (change)="isRetrievingImage= !isRetrievingImage"
+    >
+    Retrieve Images
+</label>
+@if (isRetrievingImage) {
+    <app-image-list></app-image-list>
+}
+<hr>
 <form
     #imageSubmissionForm="ngForm" 
     (ngSubmit)="onSubmit()"
+    class="dash-upload"
 >
     <label for="postimg">Upload an Image</label>
     <br>
@@ -13,14 +27,3 @@
     >
     <button type="submit">Upload</button>
 </form>
-<hr>
-<label for="retrieveImg">Retrieve Images</label>
-<input 
-    type="checkbox" 
-    id="retrieveImg"
-    [checked]="isRetrievingImage"
-    (change)="isRetrievingImage= !isRetrievingImage"
->
-@if (isRetrievingImage) {
-    <app-image-list></app-image-list>
-}

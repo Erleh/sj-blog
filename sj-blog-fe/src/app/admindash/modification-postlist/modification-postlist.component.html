@@ -7,13 +7,16 @@
                 (onSelect)="onSelection(post)"
                 (onDelete)="onDeletion(post)"
             ></app-postref>
+            <hr>
         }
     </ul>
-    @if (hasPreviousPage) {
-        <button (click)="onPrevPage()">Prev</button>
-    }
-
-    @if (hasNextPage) {
-        <button (click)="onNextPage()">Next</button>
-    }
+    <div class="container-grid">
+        @if (hasPreviousPage) {
+            <button (click)="onPrevPage()" class="page-nav prev">Prev</button>
+        }
+        
+        @if (hasNextPage) {
+            <button (click)="onNextPage()" class="page-nav next">Next</button>
+        }
+    </div>
 </div>

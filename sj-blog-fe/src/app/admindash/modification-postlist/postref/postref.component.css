@@ -1,3 +1,65 @@
+li {
+    list-style: none;
+}
+
 .selected {
     border: solid 1px black;
+}
+
+.postref {
+    max-height: 10rem;
+    grid-template-columns: .5fr 3fr;
+    gap: 1rem;
+}
+
+.postref img {
+    max-height: 10rem;
+    width: 16rem;
+    justify-self: center;
+    align-self: center;
+}
+
+.content {
+    grid-template-areas:    
+        "title   title"
+        "summary summary"
+        "author  date";
+    grid-template-rows: auto 1fr auto;
+}
+
+.content .title {
+    grid-area: title;
+    margin: 0;
+    color: var(--sc-clr-300);
+}
+
+.content .summary {
+    grid-area: summary;
+    max-height: 5rem;
+    overflow: hidden;
+    margin: 0;
+    font-weight: lighter;
+}
+
+.content .author {
+    grid-area: author;
+    margin: 0;
+}
+
+.content .date {
+    grid-area: date;
+    text-align: right;
+    margin: 0;
+}
+
+.content .thumbnail {
+    grid-area: img;
+}
+
+#delete-options {
+    margin: .5rem;
+}
+
+#delete-options button {
+    margin: .5rem;
 }

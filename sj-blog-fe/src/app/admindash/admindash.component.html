@@ -2,30 +2,32 @@
     <div class="dash">
         <h2>Dashboard</h2>
         <app-create-post-form 
-        (postFormSubmissionEvent)="handlePostSubmission($event)"
-        (postFormModificationEvent)="handlePostModification($event)"
-        [modId]="modId"
-        [modTitle]="modTitle"
-        [modContent]="modContent"
-        [modThumbnail]="modThumbnail"
-        [isModifying]="isModifying"
+            (postFormSubmissionEvent)="handlePostSubmission($event)"
+            (postFormModificationEvent)="handlePostModification($event)"
+            [modId]="modId"
+            [modTitle]="modTitle"
+            [modContent]="modContent"
+            [modThumbnail]="modThumbnail"
+            [isModifying]="isModifying"
         ></app-create-post-form>
-        <label for="modify">Modify Posts</label>
-        <input 
-        type="checkbox" 
-        id="modify"
-        [checked]="isModifying"
-        (change)="isModifying = !isModifying"
-        >
+        <label for="modify" class="dash-checkbox">
+            <input 
+                type="checkbox" 
+                id="modify"
+                [checked]="isModifying"
+                (change)="isModifying = !isModifying"
+            >
+            Modify Posts
+        </label>
         @if (isModifying) {
             <app-modification-postlist
-            (selectedPostEvent)="handleModifySelection($event)"
-            (deletePostEvent)="handlePostDeletion($event)"
+                (selectedPostEvent)="handleModifySelection($event)"
+                (deletePostEvent)="handlePostDeletion($event)"
             ></app-modification-postlist>
         }
         <hr>
         <app-image-manager
-        (uploadImageEvent)="handleUploadImage($event)"
+            (uploadImageEvent)="handleUploadImage($event)"
         ></app-image-manager>
     </div>
 </div>
