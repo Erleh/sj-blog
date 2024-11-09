@@ -54,3 +54,30 @@ a {
     justify-self: center;
     align-self: center;
 }
+
+@media only screen and (max-width: 600px) {
+    .postlisting {
+        max-height: 12rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: .5fr 1fr;
+        gap: 0;
+    }
+
+    .content .summary {
+        display: none;
+    }
+
+    .postlisting .content {
+        grid-template-areas:    
+            "title   title"
+            "author  date";
+        grid-template-rows: min-content min-content;
+    }
+
+    .postlisting img {
+        max-height: 8rem;
+        width: 16rem;
+        justify-self: center;
+        align-self: center;
+    }
+}
