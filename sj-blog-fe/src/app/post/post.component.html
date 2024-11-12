@@ -1,9 +1,11 @@
-<div class="post">
-    <h1>{{postData.title}}</h1>
-    <p class="signoff">Posted by <span class="author">{{postData.authorUsername}} </span><span class="date">{{postData.creationDate.toLocaleDateString()}}</span></p>
-    <div class="markdown">
-        <markdown
-        [data]="postData.content">
-    </markdown>
-</div>
+<div class="container-flex post">
+    <div class="content">    
+        <h1>{{postData.title}}</h1>
+        <p class="signoff">Posted by <span class="author">{{postData.authorUsername}} </span><span class="date">{{postData.creationDate.toLocaleDateString()}}</span></p>
+        <div class="markdown">
+            <markdown
+                [data]="postData.content">
+            </markdown>
+        </div>
+    </div>
 </div>

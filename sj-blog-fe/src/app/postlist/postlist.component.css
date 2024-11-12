@@ -39,6 +39,11 @@ hr {
     grid-area: main;
 }
 
+.postings {
+    margin: 0 auto;
+    max-width: 90rem;
+}
+
 .sidebar {
     grid-area: sidebar;
     grid-template-areas: 

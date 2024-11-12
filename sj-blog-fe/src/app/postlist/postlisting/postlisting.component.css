@@ -61,6 +61,7 @@ a {
         grid-template-columns: 1fr;
         grid-template-rows: .5fr 1fr;
         gap: 0;
+        margin: 0 1rem;
     }
 
     .content .summary {
