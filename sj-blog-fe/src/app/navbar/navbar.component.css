@@ -11,13 +11,10 @@ ul {
 
 li {
     list-style: none;
-    padding: 1rem;
 }
 
 li a {
     text-decoration: none;
-    padding: 1rem;
-    margin: -1rem;
 }
 
 .logout {
