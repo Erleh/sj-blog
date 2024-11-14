@@ -1,14 +1,12 @@
 <nav class="container-flex">
     <ul>
         <li>
-            <a href=""><span><app-full-logo-svg-icon></app-full-logo-svg-icon></span></a>
+            <a href=""><app-logo-svg-icon></app-logo-svg-icon></a>
         </li>
     </ul>
     @if (authService.isLoggedIn$ | async) {
-        <ul class="logout">
-            <li>
-                <button (click)="logout()">Logout</button>
-            </li>
-        </ul>
+        <div class="logout">
+            <button class="main-btn" (click)="logout()">Logout</button>
+        </div>
     }
 </nav>
