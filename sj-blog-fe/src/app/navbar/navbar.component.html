@@ -1,7 +1,10 @@
 <nav class="container-flex">
-    <ul>
+    <ul class="container-flex">
         <li>
             <a href=""><app-logo-svg-icon></app-logo-svg-icon></a>
+        </li>
+        <li>
+            <app-text-logo-svg-icon></app-text-logo-svg-icon>
         </li>
     </ul>
     @if (authService.isLoggedIn$ | async) {

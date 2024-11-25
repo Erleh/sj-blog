@@ -16,14 +16,11 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 @Service
 public class ImageService {
     private final String UPLOAD_DIR = "uploads/";
     private final ImagePathRepository imagePathRepository;
-
-    private final Logger logger = Logger.getLogger(ImageService.class.toString());
 
     public ImageService(
             ImagePathRepository imagePathRepository

@@ -10,6 +10,10 @@ ul {
     padding: 0;
 }
 
+nav ul {
+    flex-direction: column;
+}
+
 li {
     max-width: 3rem;
     list-style: none;
