@@ -5,11 +5,13 @@ import { PostlistingComponent } from "./postlisting/postlisting.component";
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DiscordSvgIconComponent } from "../common/svgs/discord-svg-icon/discord-svg-icon.component";
 import { YoutubeSvgIconComponent } from "../common/svgs/youtube-svg-icon/youtube-svg-icon.component";
+import { XSvgIconComponent } from "../common/svgs/x-svg-icon/x-svg-icon.component";
+import { InstagramSvgIconComponent } from "../common/svgs/instagram-svg-icon/instagram-svg-icon.component";
 
 @Component({
   selector: 'app-postlist',
   standalone: true,
-  imports: [PostlistingComponent, RouterLink, DiscordSvgIconComponent, YoutubeSvgIconComponent],
+  imports: [PostlistingComponent, RouterLink, DiscordSvgIconComponent, YoutubeSvgIconComponent, InstagramSvgIconComponent, XSvgIconComponent],
   templateUrl: './postlist.component.html',
   styleUrl: './postlist.component.css'
 })
