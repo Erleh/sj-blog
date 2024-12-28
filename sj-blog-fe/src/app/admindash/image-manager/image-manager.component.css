@@ -8,6 +8,18 @@ button[type=submit] {
     font-weight: bold;
 }
 
+button[type=submit]:hover {
+    transition-property: background-color;
+    transition-duration: .25s;
+    background-color: var(--sc-clr-500);
+}
+
+button[type=submit]:active {
+    transition-property: background-color;
+    transition-duration: .2s;
+    background-color: var(--sc-clr-300);
+}
+
 .dash-checkbox {
     display: block;
     padding: .5rem .5rem;

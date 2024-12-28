@@ -2,12 +2,11 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { FormsModule } from '@angular/forms';
 import { PostSubmissionFormDto } from '../../common/dtos/PostSubmissionFormDto';
 import { PostModificationFormDto } from '../../common/dtos/PostModificationDto';
-import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-create-post-form',
   standalone: true,
-  imports: [FormsModule, MarkdownComponent],
+  imports: [FormsModule],
   templateUrl: './create-post-form.component.html',
   styleUrl: './create-post-form.component.css'
 })
