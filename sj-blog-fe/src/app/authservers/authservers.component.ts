@@ -3,13 +3,13 @@ import { GoogleAuthComponent } from "./google-auth/google-auth.component";
 import { GoogleAuthService } from '../common/services/google-auth.service';
 import { Router, RouterOutlet } from '@angular/router';
 import { CsrfService } from '../common/services/csrf.service';
-import { CreateAccountFormComponent } from "./create-account-form/create-account-form.component";
 import { AuthService } from '../common/services/auth.service';
+import { GoogleAuthRedirectComponent } from './google-auth-redirect/google-auth-redirect.component';
 
 @Component({
   selector: 'app-authservers',
   standalone: true,
-  imports: [RouterOutlet, GoogleAuthComponent, CreateAccountFormComponent],
+  imports: [RouterOutlet, GoogleAuthComponent],
   templateUrl: './authservers.component.html',
   styleUrl: './authservers.component.css'
 })
@@ -43,7 +43,8 @@ export class AuthserversComponent implements OnInit{
   // the page is then redirected, when following 'code' flow
   handleAuthAfterRedirect(event: any) {
     // If redirect from Google OAuth2 code flow is hit, continue exchange for tokens
-    if (event.constructor.name === "_GoogleAuthRedirectComponent") {
+    if (event instanceof GoogleAuthRedirectComponent) {
+
       // Ensure that client has active csrf token
       this.csrf.getCsrf().subscribe(res => {
         let authCode = this.googleAuthService.retrieveGoogleAuthorizationCode();

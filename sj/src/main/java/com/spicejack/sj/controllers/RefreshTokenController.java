@@ -5,6 +5,7 @@ import com.spicejack.sj.services.GoogleAuthService;
 import com.spicejack.sj.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RefreshTokenController {
+    @Value("${backend.root.url}")
+    private String backendRootUrl;
     private final GoogleAuthService googleAuthService;
     private final UserService userService;
 
@@ -59,6 +62,8 @@ public class RefreshTokenController {
             accessToken.setMaxAge(refreshResponse.getExpires_in());
             accessToken.setHttpOnly(true);
             accessToken.setPath("/");
+            accessToken.setSecure(true);
+            accessToken.setDomain(this.backendRootUrl);
 
             response.addCookie(accessToken);
 

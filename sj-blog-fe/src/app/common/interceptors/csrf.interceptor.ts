@@ -1,5 +1,6 @@
 import { HttpInterceptorFn, HttpXsrfTokenExtractor } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 export const csrfInterceptor: HttpInterceptorFn = (req, next) => {
   let csrfExtractor = inject(HttpXsrfTokenExtractor);

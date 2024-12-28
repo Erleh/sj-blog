@@ -4,12 +4,15 @@ import com.spicejack.sj.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CustomLogoutHandler implements LogoutHandler {
+    @Value("${backend.root.url}")
+    private String backendRootUrl;
     private final UserService userService;
 
     public CustomLogoutHandler(
@@ -54,6 +57,7 @@ public class CustomLogoutHandler implements LogoutHandler {
         accessTokenCookie.setPath("/");
         accessTokenCookie.setHttpOnly(true);
         accessTokenCookie.setMaxAge(0);
+        accessTokenCookie.setDomain(this.backendRootUrl);
 
         res.addCookie(accessTokenCookie);
 
@@ -61,6 +65,7 @@ public class CustomLogoutHandler implements LogoutHandler {
         refreshTokenCookie.setPath("/");
         refreshTokenCookie.setHttpOnly(true);
         refreshTokenCookie.setMaxAge(0);
+        refreshTokenCookie.setDomain(this.backendRootUrl);
 
         res.addCookie(refreshTokenCookie);
 
@@ -68,6 +73,7 @@ public class CustomLogoutHandler implements LogoutHandler {
         issCookie.setPath("/");
         issCookie.setHttpOnly(true);
         issCookie.setMaxAge(0);
+        issCookie.setDomain(this.backendRootUrl);
 
         res.addCookie(issCookie);
     }

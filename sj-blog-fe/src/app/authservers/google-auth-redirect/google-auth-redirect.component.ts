@@ -8,7 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './google-auth-redirect.component.css'
 })
 export class GoogleAuthRedirectComponent{
-
-  constructor(
-  ) {}
+  constructor() {}
 }

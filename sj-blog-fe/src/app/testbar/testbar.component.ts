@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { GetTestsComponent } from "./get-tests/get-tests.component";
 import { GetTestsService } from '../common/services/get-tests.service';
+import { PostTestsComponent } from "./post-tests/post-tests.component";
+import { PostTestsService } from '../common/services/post-tests.service';
 
 @Component({
   selector: 'app-testbar',
   standalone: true,
-  imports: [GetTestsComponent],
+  imports: [GetTestsComponent, PostTestsComponent],
   templateUrl: './testbar.component.html',
   styleUrl: './testbar.component.css'
 })
 export class TestbarComponent {
   constructor(
-    private getTestService : GetTestsService
+    private getTestService : GetTestsService,
+    private postTestService : PostTestsService
   ) {}
 
   onGetHelloEvent() {
@@ -61,5 +64,12 @@ export class TestbarComponent {
       console.log("--Refresh Token sent check cookies /public/refresh-token");
       console.log(res);
     });
+  }
+
+  onPostHelloEvent() {
+    this.postTestService.postHello().subscribe(res => {
+      console.log("--Post /public/test/post_hello");
+      console.log(res);
+    })
   }
 }

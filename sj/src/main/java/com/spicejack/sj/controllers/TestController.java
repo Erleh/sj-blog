@@ -6,10 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 
@@ -51,6 +49,16 @@ public class TestController {
     @GetMapping("/api/private_get_hello")
     String testPrivateGet() {
         return "Hello";
+    }
+
+    @PostMapping("/public/test/post_hello")
+    String testPost(
+            @RequestBody String test
+    ) {
+        if (test.compareTo("success") == 0) {
+            return "Hello";
+        }
+        return "fail";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

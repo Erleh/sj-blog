@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environments';
+import { environment } from '../../../environments/environment';
 import { PostSubmissionFormDto } from '../dtos/PostSubmissionFormDto';
 import { Observable } from 'rxjs';
 import { PostDto } from '../dtos/PostDto';

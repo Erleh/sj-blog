@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.logging.Logger;
 
 @Component
 public class GoogleOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
@@ -28,8 +27,6 @@ public class GoogleOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
 
     @Override
     public OAuth2IntrospectionAuthenticatedPrincipal introspect(String token) {
-        // String introspectionUri = "https://oauth2.googleapis.com/tokeninfo";
-
         GoogleTokenInfoDto tokenInfo = googleAuthService.getGoogleTokenInfo(token);
         Collection<String> roles = userService.findUserRolesByEmail(tokenInfo.getEmail());
 

@@ -1,4 +1,4 @@
-import { environment } from "../../environments/environments";
+import { environment } from "../../environments/environment";
 import { Params } from "../common/interfaces/params";
 
 // URI for google oauth2 auth code

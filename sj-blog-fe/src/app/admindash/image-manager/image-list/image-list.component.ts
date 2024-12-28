@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ImagesService } from '../../../common/services/images.service';
 import { ImagePathListDto } from '../../../common/dtos/ImagePathListDto';
 import { ImagePathDto } from '../../../common/dtos/ImagePathDto';
-import { environment } from '../../../../environments/environments';
+import { environment } from '../../../../environments/environment';
 import { ImageComponent } from './image/image.component';
 
 @Component({

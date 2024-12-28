@@ -1,7 +1,5 @@
 package com.spicejack.sj.general.dto;
 
-import java.util.Arrays;
-
 public class GoogleTokenExchangeDto {
     String access_token;
     int expires_in;

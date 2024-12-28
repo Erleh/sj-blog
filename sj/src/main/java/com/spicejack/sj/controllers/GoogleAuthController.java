@@ -6,12 +6,15 @@ import com.spicejack.sj.services.GoogleAuthService;
 import com.spicejack.sj.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GoogleAuthController {
+    @Value("${backend.root.url}")
+    private String backendRootUrl;
     private final GoogleAuthService googleAuthService;
     private final UserService userService;
 
@@ -31,22 +34,24 @@ public class GoogleAuthController {
     ) {
         GoogleTokenExchangeDto info = this.googleAuthService.getGoogleTokenExchangeDto(authCode);
 
-        // to do:
-        //
-        //  Set secure flag on cookies to enforce https connection
-        //
         Cookie accessToken = new Cookie("ACCESS_TOKEN", info.getAccess_token());
         accessToken.setMaxAge(info.getExpires_in());
         accessToken.setHttpOnly(true);
         accessToken.setPath("/");
+        accessToken.setSecure(true);
+        accessToken.setDomain(this.backendRootUrl);
 
         Cookie refreshToken = new Cookie("REFRESH_TOKEN", info.getRefresh_token());
         refreshToken.setHttpOnly(true);
         refreshToken.setPath("/");
+        refreshToken.setSecure(true);
+        refreshToken.setDomain(this.backendRootUrl);
 
         Cookie iss = new Cookie("iss", "google.com");
         refreshToken.setHttpOnly(true);
         iss.setPath("/");
+        iss.setSecure(true);
+        iss.setDomain(this.backendRootUrl);
 
         response.addCookie(accessToken);
         response.addCookie(refreshToken);

@@ -1,6 +1,8 @@
 package com.spicejack.sj.configurations;
 
 import com.spicejack.sj.configurations.customizers.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.server.Cookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +13,8 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 public class SecurityChainConfig {
+    @Value("${backend.root.url}")
+    private String backendRootUrl;
     private final CorsConfig corsConfig;
     private final GoogleOpaqueTokenIntrospector googleOpaqueTokenIntrospector;
     private final CookieBearerTokenResolver cookieBearerTokenResolver;
@@ -38,7 +42,15 @@ public class SecurityChainConfig {
         // Authorized paths
         http.authorizeHttpRequests(authorize -> {
             authorize
-                    .requestMatchers("/public/**", "/error", "/webjars/**", "/login", "/logout").permitAll()
+                    .requestMatchers(
+                            "/public/**",
+                            "/error",
+                            "/webjars/**",
+                            "/login",
+                            "/logout",
+                            "/favicon.ico",
+                            "/"
+                    ).permitAll()
                     .anyRequest().authenticated();
         });
 
@@ -52,8 +64,16 @@ public class SecurityChainConfig {
         });
 
         // CSRF Security configuration
+        final CookieCsrfTokenRepository repo = CookieCsrfTokenRepository.withHttpOnlyFalse();
+        repo.setCookieCustomizer(cookie -> {
+                    cookie
+                        .sameSite(Cookie.SameSite.NONE.attributeValue())
+                        .secure(true)
+                        .domain(backendRootUrl);
+                }
+        );
         http.csrf(csrf -> {
-            csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+            csrf.csrfTokenRepository(repo);
             csrf.csrfTokenRequestHandler(new SpaCsrfTokenRequestHandler());
         }).addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class);
 
