@@ -80,8 +80,8 @@ public class PostService {
             long postId,
             String title,
             String content,
-            String email,
-            String thumbnail
+            String thumbnail,
+            String email
     ) {
         // Retrieve user data using attached email
         UserDto user = userService.getUserByEmail(email);

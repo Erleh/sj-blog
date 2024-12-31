@@ -78,9 +78,7 @@ export class AdmindashComponent {
       this.modId = post.id;
       this.modTitle = post.title;
       this.modContent = post.content;
-      this.modThumbnail = post.thumbnail;
-
-      console.log(this.modThumbnail);
+      this.modThumbnail = postSelection.thumbnail;
     });
   }
 
