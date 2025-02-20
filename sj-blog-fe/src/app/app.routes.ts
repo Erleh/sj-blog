@@ -8,10 +8,12 @@ import { CanShowCreateAccountService } from './common/interceptors/routeGuard/ca
 import { CanAdminAccessService } from './common/interceptors/routeGuard/can-admin-access.service';
 import { AdmindashComponent } from './admindash/admindash.component';
 import { PostComponent } from './post/post.component';
+import { BlogPostGuardService } from './common/interceptors/routeGuard/blog-post-guard.service';
 
 export const routes: Routes = [
     {
         path: 'posts/:id/:title',
+        canActivate: [BlogPostGuardService],
         component: PostComponent
     },
     {
